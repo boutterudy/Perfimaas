@@ -34,7 +34,7 @@ Heeey! I am very happy to know that you are considering contributing to PerFiMaA
 
 ## 💌 Contact
 
-Feel free to contact us about any questions you may have:
+Feel free to contact me about any questions you may have:
 * At [btte.rudy@gmail.com](mailto:btte.rudy@gmail.com)
 * By opening an issue.
 
