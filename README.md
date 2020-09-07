@@ -18,7 +18,7 @@
 ## ✨ Features
 
  - [X] User account configuration (API)
- - [ ] List management of recurring expenses (API)
+ - [X] Fixed monthly expenses management (API)
  - [ ] List management of daily expenses (API)
  - [ ] List management of bank accounts (API)
  - [ ] Goal management (API)
