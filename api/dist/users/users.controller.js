@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const users_service_1 = require("./users.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
+const create_expense_dto_1 = require("./dto/create-expense.dto");
+const update_expense_dto_1 = require("./dto/update-expense.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -28,13 +30,29 @@ let UsersController = class UsersController {
         return this.usersService.getById(+id);
     }
     createUser(newUser) {
-        this.usersService.createUser(newUser);
+        return this.usersService.createUser(newUser);
     }
     updateUser(id, updatedUser) {
         return this.usersService.updateUser(+id, updatedUser);
     }
     deleteUser(id) {
         return this.usersService.deleteUser(+id);
+    }
+    getFixedMonthlyExpenses(id) {
+        return this.usersService.getFixedMonthlyExpenses(+id);
+    }
+    getFixedMonthlyExpensesById(id, expenseId) {
+        return this.usersService.getFixedMonthlyExpensesById(+id, +expenseId);
+    }
+    createFixedMonthlyExpense(id, newExpense) {
+        return this.usersService.createFixedMonthlyExpense(+id, newExpense);
+    }
+    updateFixedMonthlyExpense(id, expenseId, updatedExpense) {
+        console.log('id', +id, 'expenseId', +expenseId);
+        return this.usersService.updateFixedMonthlyExpense(+id, +expenseId, updatedExpense);
+    }
+    deleteFixedMonthlyExpense(id, expenseId) {
+        return this.usersService.deleteFixedMonthlyExpense(+id, +expenseId);
     }
 };
 __decorate([
@@ -55,7 +73,7 @@ __decorate([
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_dto_1.CreateUserDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Array)
 ], UsersController.prototype, "createUser", null);
 __decorate([
     common_1.Patch(':id'),
@@ -71,6 +89,41 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "deleteUser", null);
+__decorate([
+    common_1.Get(':id/fixedmonthlyexpenses'),
+    __param(0, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getFixedMonthlyExpenses", null);
+__decorate([
+    common_1.Get(':id/fixedmonthlyexpenses/:expenseId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('expenseId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getFixedMonthlyExpensesById", null);
+__decorate([
+    common_1.Post(':id/fixedmonthlyexpenses'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_expense_dto_1.CreateExpenseDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createFixedMonthlyExpense", null);
+__decorate([
+    common_1.Patch(':id/fixedmonthlyexpenses/:expenseId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('expenseId')), __param(2, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, update_expense_dto_1.UpdateExpenseDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateFixedMonthlyExpense", null);
+__decorate([
+    common_1.Delete(':id/fixedmonthlyexpenses/:expenseId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('expenseId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "deleteFixedMonthlyExpense", null);
 UsersController = __decorate([
     common_1.Controller('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

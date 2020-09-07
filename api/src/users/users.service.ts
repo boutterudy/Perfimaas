@@ -2,6 +2,10 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { User } from './interfaces/user.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { Expense } from './interfaces/expense.interface';
+import { DeleteUserDto } from './dto/delete-user.dto';
+import { DeleteExpenseDto } from './dto/delete-expense.dto';
+import { UpdateExpenseDto } from './dto/update-expense.dto';
 
 @Injectable()
 export class UsersService {
@@ -11,32 +15,39 @@ export class UsersService {
       netMonthlyIncome: 1200.85,
       fixedMonthlyExpenses: [
         {
+          id: 1,
           title: "OVH - VPS",
           amount: 15.59,
         },
         {
+          id: 2,
           title: "OVH - rudyboutte.com",
           amount: 1.00,
         },
         {
+          id: 3,
           title: "OVH - bonalim.com",
           amount: 1.00,
         },
         {
+          id: 4,
           title: "OVH - rudy.cloud",
           amount: 1.80,
         },
       ],
       variableMonthlyExpenses: [
         {
+          id: 1,
           title: "Fuel",
           amount: 90.00,
         },
         {
+          id: 2,
           title: "Shopping",
           amount: 0.00,
         },
         {
+          id: 3,
           title: "Pleasures",
           amount: 100.00,
         },
@@ -91,11 +102,12 @@ export class UsersService {
     },
   ];
 
-  getAll(): any[] {
+  // Users
+  getAll(): User[] {
     return this.users;
   }
 
-  getById(id: number) {
+  getById(id: number): User | NotFoundException  {
     const user = this.users.find(user => user.id === id);
     if(!user) {
       return new NotFoundException('Cannot find any user with id ' + id);
@@ -104,11 +116,12 @@ export class UsersService {
     }
   }
 
-  createUser(user: CreateUserDto) {
+  createUser(user: CreateUserDto): User[] {
     this.users = [...this.users, user];
+    return this.users;
   }
 
-  updateUser(id: number, updatedUser: UpdateUserDto) {
+  updateUser(id: number, updatedUser: UpdateUserDto): User | NotFoundException  {
     const user = this.users.find(u => u.id === id);
     if(!user) {
       return new NotFoundException('Cannot find any user with id ' + id);
@@ -146,7 +159,7 @@ export class UsersService {
     }
   }
 
-  deleteUser(id: number) {
+  deleteUser(id: number): DeleteUserDto | NotFoundException {
     const user = this.users.find(u => u.id === id);
     if(!user) {
       return new NotFoundException('Cannot find any user with id ' + id);
@@ -159,4 +172,85 @@ export class UsersService {
       }
     }
   }
+
+  // Users fixed monthly expenses
+  getFixedMonthlyExpenses(id: number): Expense[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      return user.fixedMonthlyExpenses;
+    }
+  }
+
+  getFixedMonthlyExpensesById(id: number, expenseId: number): Expense | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const expense = user.fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+      if(!expense) {
+        return new NotFoundException('Cannot find any expense with id ' + id);
+      } else {
+        return expense;
+      }
+    }
+  }
+
+  createFixedMonthlyExpense(id: number, newExpense: Expense): Expense[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      user.fixedMonthlyExpenses = [...user.fixedMonthlyExpenses, newExpense];
+      this.users = [...this.users.map(u => u.id !== id ? u : user)];
+      return user.fixedMonthlyExpenses;
+    }
+  }
+
+  updateFixedMonthlyExpense(id: number, expenseId: number, updatedExpense: UpdateExpenseDto): Expense | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const fixedMonthlyExpense = user.fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+      console.log('fixedMonthlyExpense', fixedMonthlyExpense);
+      if(!fixedMonthlyExpense) {
+        return new NotFoundException('Cannot find any expense with id ' + expenseId);
+      } else {
+        if(updatedExpense.title) {
+          fixedMonthlyExpense.title = updatedExpense.title
+        }
+
+        if(updatedExpense.hasOwnProperty('amount')) {
+          fixedMonthlyExpense.amount = updatedExpense.amount
+        }
+
+        user.fixedMonthlyExpenses = [...user.fixedMonthlyExpenses.map(e => e.id !== expenseId ? e : fixedMonthlyExpense)];
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return this.users.find(u => u.id === id).fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+      }
+    }
+  }
+
+  deleteFixedMonthlyExpense(id: number, expenseId: number): DeleteExpenseDto | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const fixedMonthlyExpense = user.fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+      if(!fixedMonthlyExpense) {
+        return new NotFoundException('Cannot find any expense with id ' + id);
+      } else {
+        const nbOfExpensesBeforeDelete = user.fixedMonthlyExpenses.length;
+        user.fixedMonthlyExpenses = user.fixedMonthlyExpenses.filter(e => e.id !== expenseId);
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return {
+          expensesDeleted: nbOfExpensesBeforeDelete - user.fixedMonthlyExpenses.length,
+          nbExpensesAfterDelete: user.fixedMonthlyExpenses.length,
+        }
+      }
+    }
+  }
+
 }

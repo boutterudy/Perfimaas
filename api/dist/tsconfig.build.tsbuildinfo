@@ -1167,8 +1167,8 @@
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/expense.interface.ts": {
-        "version": "2c9865f6ca387d6496d679f12da51b01783e6d2af25c58858511818f8c7b4c50",
-        "signature": "df1afac98bbc4dc109fe2395b6901f8a1464bce2e8058995b3f4b76db06b3f74",
+        "version": "a8dfe787cbe024a6f68cb060df1c0954b764e12f7145fdaea60f0b0dcb232839",
+        "signature": "980770ffe6acdd9c43a5a9b3f13bd816e2f5aa777283af85da434525a7aa2eba",
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/bank-account.interface.ts": {
@@ -1201,19 +1201,34 @@
         "signature": "e9d16dfaf27675db9636b7dfb0515ba99f82b86097912b88c40fc5a488a46686",
         "affectsGlobalScope": false
       },
-      "../src/users/users.service.ts": {
-        "version": "504f0af34330acb5dcaf292c29f9b95d70c3193cc7c5036e94b1e5c120b53e66",
-        "signature": "c45e9d9714faab2fc0f9bcbdfe42ccfe38e420dde1656996c7919adcdd92cf5f",
-        "affectsGlobalScope": false
-      },
       "../src/users/dto/delete-user.dto.ts": {
         "version": "29959137f017655ef0ae273b27cf3ea038800eedd6ba30d0e40fdfc4762d2464",
         "signature": "60716f3d1f1b57493cbf6018f409c9f5fc9faa9be76a187c88429dcfbedd50f8",
         "affectsGlobalScope": false
       },
+      "../src/users/dto/delete-expense.dto.ts": {
+        "version": "c083a7a513cae5803f3a0a96c64536f5bd3f0805afb4ed6aea05373bfc236815",
+        "signature": "5f90ce220f6bbffb27b2ac30025134e043e99101a7cc4d8834e4d94338318470",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/update-expense.dto.ts": {
+        "version": "42db2f4d035c06294f71d55645706844ea687307192b47b75ce7f215a2f91aa6",
+        "signature": "d7faa910e0bae7223dd248d9c573a201ddb1d82559edc744b6f0b93e1cda912b",
+        "affectsGlobalScope": false
+      },
+      "../src/users/users.service.ts": {
+        "version": "a8ed6be34387288710f3c792063de90c29b11f2006c51526284abe8e03bea752",
+        "signature": "012d1bc04c0f6202552a023d76b0e154d0848eb8b648fe924e0f81359f97f341",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/create-expense.dto.ts": {
+        "version": "3e3728d07e2483a4758c6d3bf0e61ee4398d288e351758aabe833b1f72f5fb96",
+        "signature": "a9a78b286be5b430b890995a757b4819a17866126a287b7a7640b985c230424a",
+        "affectsGlobalScope": false
+      },
       "../src/users/users.controller.ts": {
-        "version": "21fc73bf7f13b237a81b8e27ffcf2bee8f328a2502c11c604da689e0a3ebee3b",
-        "signature": "2bc9566f0743a71b4ac982951d95361e4020a1e1a0cd873e1424017443cb845e",
+        "version": "f91746106a56456502c406e2948991e450ad93176caaf81cf2ecdae87485f93c",
+        "signature": "6d1ede0a9171ecf4c460ff58a357ea52854d4fd2e995c630d9df03a6f4fdf22d",
         "affectsGlobalScope": false
       },
       "../src/users/users.module.ts": {
@@ -5236,6 +5251,13 @@
         "../node_modules/@types/node/ts3.4/util.d.ts",
         "../src/app.module.ts"
       ],
+      "../src/users/dto/create-expense.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/create-user.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
@@ -5247,7 +5269,21 @@
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/goal.interface.ts"
       ],
+      "../src/users/dto/delete-expense.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/delete-user.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
+      "../src/users/dto/update-expense.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
         "../node_modules/@types/node/ts3.1/util.d.ts",
@@ -5311,9 +5347,12 @@
         "../node_modules/@types/node/ts3.1/util.d.ts",
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts",
+        "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts",
         "../src/users/users.service.ts"
       ],
@@ -5335,7 +5374,11 @@
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts",
         "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/delete-expense.dto.ts",
+        "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts"
       ]
     },
@@ -8635,16 +8678,24 @@
       ],
       "../src/users/users.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts",
         "../src/users/users.service.ts"
       ],
       "../src/users/users.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/delete-expense.dto.ts",
+        "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts"
       ]
     },
@@ -9020,8 +9071,11 @@
       "../src/app.module.ts",
       "../src/app.service.ts",
       "../src/main.ts",
+      "../src/users/dto/create-expense.dto.ts",
       "../src/users/dto/create-user.dto.ts",
+      "../src/users/dto/delete-expense.dto.ts",
       "../src/users/dto/delete-user.dto.ts",
+      "../src/users/dto/update-expense.dto.ts",
       "../src/users/dto/update-user.dto.ts",
       "../src/users/interfaces/bank-account.interface.ts",
       "../src/users/interfaces/cash-flow-distribution.interface.ts",

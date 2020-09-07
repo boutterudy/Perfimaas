@@ -16,32 +16,39 @@ let UsersService = class UsersService {
                 netMonthlyIncome: 1200.85,
                 fixedMonthlyExpenses: [
                     {
+                        id: 1,
                         title: "OVH - VPS",
                         amount: 15.59,
                     },
                     {
+                        id: 2,
                         title: "OVH - rudyboutte.com",
                         amount: 1.00,
                     },
                     {
+                        id: 3,
                         title: "OVH - bonalim.com",
                         amount: 1.00,
                     },
                     {
+                        id: 4,
                         title: "OVH - rudy.cloud",
                         amount: 1.80,
                     },
                 ],
                 variableMonthlyExpenses: [
                     {
+                        id: 1,
                         title: "Fuel",
                         amount: 90.00,
                     },
                     {
+                        id: 2,
                         title: "Shopping",
                         amount: 0.00,
                     },
                     {
+                        id: 3,
                         title: "Pleasures",
                         amount: 100.00,
                     },
@@ -110,6 +117,7 @@ let UsersService = class UsersService {
     }
     createUser(user) {
         this.users = [...this.users, user];
+        return this.users;
     }
     updateUser(id, updatedUser) {
         const user = this.users.find(u => u.id === id);
@@ -154,6 +162,86 @@ let UsersService = class UsersService {
                 usersDeleted: nbOfUsersBeforeDelete - this.users.length,
                 nbUsersAfterDelete: this.users.length,
             };
+        }
+    }
+    getFixedMonthlyExpenses(id) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            return user.fixedMonthlyExpenses;
+        }
+    }
+    getFixedMonthlyExpensesById(id, expenseId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const expense = user.fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+            if (!expense) {
+                return new common_1.NotFoundException('Cannot find any expense with id ' + id);
+            }
+            else {
+                return expense;
+            }
+        }
+    }
+    createFixedMonthlyExpense(id, newExpense) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            user.fixedMonthlyExpenses = [...user.fixedMonthlyExpenses, newExpense];
+            this.users = [...this.users.map(u => u.id !== id ? u : user)];
+            return user.fixedMonthlyExpenses;
+        }
+    }
+    updateFixedMonthlyExpense(id, expenseId, updatedExpense) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const fixedMonthlyExpense = user.fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+            console.log('fixedMonthlyExpense', fixedMonthlyExpense);
+            if (!fixedMonthlyExpense) {
+                return new common_1.NotFoundException('Cannot find any expense with id ' + expenseId);
+            }
+            else {
+                if (updatedExpense.title) {
+                    fixedMonthlyExpense.title = updatedExpense.title;
+                }
+                if (updatedExpense.hasOwnProperty('amount')) {
+                    fixedMonthlyExpense.amount = updatedExpense.amount;
+                }
+                user.fixedMonthlyExpenses = [...user.fixedMonthlyExpenses.map(e => e.id !== expenseId ? e : fixedMonthlyExpense)];
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return this.users.find(u => u.id === id).fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+            }
+        }
+    }
+    deleteFixedMonthlyExpense(id, expenseId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const fixedMonthlyExpense = user.fixedMonthlyExpenses.find(expense => expense.id === expenseId);
+            if (!fixedMonthlyExpense) {
+                return new common_1.NotFoundException('Cannot find any expense with id ' + id);
+            }
+            else {
+                const nbOfExpensesBeforeDelete = user.fixedMonthlyExpenses.length;
+                user.fixedMonthlyExpenses = user.fixedMonthlyExpenses.filter(e => e.id !== expenseId);
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return {
+                    expensesDeleted: nbOfExpensesBeforeDelete - user.fixedMonthlyExpenses.length,
+                    nbExpensesAfterDelete: user.fixedMonthlyExpenses.length,
+                };
+            }
         }
     }
 };
