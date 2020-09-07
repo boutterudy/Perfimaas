@@ -14,8 +14,13 @@ export declare class UsersService {
     updateUser(id: number, updatedUser: UpdateUserDto): User | NotFoundException;
     deleteUser(id: number): DeleteUserDto | NotFoundException;
     getFixedMonthlyExpenses(id: number): Expense[] | NotFoundException;
-    getFixedMonthlyExpensesById(id: number, expenseId: number): Expense | NotFoundException;
+    getFixedMonthlyExpenseById(id: number, expenseId: number): Expense | NotFoundException;
     createFixedMonthlyExpense(id: number, newExpense: Expense): Expense[] | NotFoundException;
     updateFixedMonthlyExpense(id: number, expenseId: number, updatedExpense: UpdateExpenseDto): Expense | NotFoundException;
     deleteFixedMonthlyExpense(id: number, expenseId: number): DeleteExpenseDto | NotFoundException;
+    getVariableMonthlyExpenses(id: number): Expense[] | NotFoundException;
+    getVariableMonthlyExpenseById(id: number, expenseId: number): Expense | NotFoundException;
+    createVariableMonthlyExpense(id: number, newExpense: Expense): Expense[] | NotFoundException;
+    updateVariableMonthlyExpense(id: number, expenseId: number, updatedExpense: UpdateExpenseDto): Expense | NotFoundException;
+    deleteVariableMonthlyExpense(id: number, expenseId: number): DeleteExpenseDto | NotFoundException;
 }

@@ -183,7 +183,7 @@ export class UsersService {
     }
   }
 
-  getFixedMonthlyExpensesById(id: number, expenseId: number): Expense | NotFoundException {
+  getFixedMonthlyExpenseById(id: number, expenseId: number): Expense | NotFoundException {
     const user = this.users.find(user => user.id === id);
     if(!user) {
       return new NotFoundException('Cannot find any user with id ' + id);
@@ -214,7 +214,6 @@ export class UsersService {
       return new NotFoundException('Cannot find any user with id ' + id);
     } else {
       const fixedMonthlyExpense = user.fixedMonthlyExpenses.find(expense => expense.id === expenseId);
-      console.log('fixedMonthlyExpense', fixedMonthlyExpense);
       if(!fixedMonthlyExpense) {
         return new NotFoundException('Cannot find any expense with id ' + expenseId);
       } else {
@@ -253,4 +252,82 @@ export class UsersService {
     }
   }
 
+  // Users variable monthly expenses
+  getVariableMonthlyExpenses(id: number): Expense[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      return user.variableMonthlyExpenses;
+    }
+  }
+
+  getVariableMonthlyExpenseById(id: number, expenseId: number): Expense | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const expense = user.variableMonthlyExpenses.find(expense => expense.id === expenseId);
+      if(!expense) {
+        return new NotFoundException('Cannot find any expense with id ' + id);
+      } else {
+        return expense;
+      }
+    }
+  }
+
+  createVariableMonthlyExpense(id: number, newExpense: Expense): Expense[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      user.variableMonthlyExpenses = [...user.variableMonthlyExpenses, newExpense];
+      this.users = [...this.users.map(u => u.id !== id ? u : user)];
+      return user.variableMonthlyExpenses;
+    }
+  }
+
+  updateVariableMonthlyExpense(id: number, expenseId: number, updatedExpense: UpdateExpenseDto): Expense | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const variableMonthlyExpense = user.variableMonthlyExpenses.find(expense => expense.id === expenseId);
+      if(!variableMonthlyExpense) {
+        return new NotFoundException('Cannot find any expense with id ' + expenseId);
+      } else {
+        if(updatedExpense.title) {
+          variableMonthlyExpense.title = updatedExpense.title
+        }
+
+        if(updatedExpense.hasOwnProperty('amount')) {
+          variableMonthlyExpense.amount = updatedExpense.amount
+        }
+
+        user.variableMonthlyExpenses = [...user.variableMonthlyExpenses.map(e => e.id !== expenseId ? e : variableMonthlyExpense)];
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return this.users.find(u => u.id === id).variableMonthlyExpenses.find(expense => expense.id === expenseId);
+      }
+    }
+  }
+
+  deleteVariableMonthlyExpense(id: number, expenseId: number): DeleteExpenseDto | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const variableMonthlyExpense = user.variableMonthlyExpenses.find(expense => expense.id === expenseId);
+      if(!variableMonthlyExpense) {
+        return new NotFoundException('Cannot find any expense with id ' + id);
+      } else {
+        const nbOfExpensesBeforeDelete = user.variableMonthlyExpenses.length;
+        user.variableMonthlyExpenses = user.variableMonthlyExpenses.filter(e => e.id !== expenseId);
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return {
+          expensesDeleted: nbOfExpensesBeforeDelete - user.variableMonthlyExpenses.length,
+          nbExpensesAfterDelete: user.variableMonthlyExpenses.length,
+        }
+      }
+    }
+  }
 }

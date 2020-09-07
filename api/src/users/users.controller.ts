@@ -46,8 +46,8 @@ export class UsersController {
   }
 
   @Get(':id/fixedmonthlyexpenses/:expenseId')
-  getFixedMonthlyExpensesById(@Param('id') id: string, @Param('expenseId') expenseId: string): Expense | NotFoundException {
-    return this.usersService.getFixedMonthlyExpensesById(+id, +expenseId);
+  getFixedMonthlyExpenseById(@Param('id') id: string, @Param('expenseId') expenseId: string): Expense | NotFoundException {
+    return this.usersService.getFixedMonthlyExpenseById(+id, +expenseId);
   }
 
   @Post(':id/fixedmonthlyexpenses')
@@ -64,5 +64,32 @@ export class UsersController {
   @Delete(':id/fixedmonthlyexpenses/:expenseId')
   deleteFixedMonthlyExpense(@Param('id') id: string, @Param('expenseId') expenseId: string) {
     return this.usersService.deleteFixedMonthlyExpense(+id, +expenseId);
+  }
+
+  // Users variable monthly expenses
+  @Get(':id/variablemonthlyexpenses')
+  getVariableMonthlyExpenses(@Param('id') id: string): Expense[] | NotFoundException {
+    return this.usersService.getVariableMonthlyExpenses(+id);
+  }
+
+  @Get(':id/variablemonthlyexpenses/:expenseId')
+  getVariableMonthlyExpenseById(@Param('id') id: string, @Param('expenseId') expenseId: string): Expense | NotFoundException {
+    return this.usersService.getVariableMonthlyExpenseById(+id, +expenseId);
+  }
+
+  @Post(':id/variablemonthlyexpenses')
+  createVariableMonthlyExpense(@Param('id') id: string, @Body() newExpense: CreateExpenseDto) {
+    return this.usersService.createVariableMonthlyExpense(+id, newExpense);
+  }
+
+  @Patch(':id/variablemonthlyexpenses/:expenseId')
+  updateVariableMonthlyExpense(@Param('id') id: string, @Param('expenseId') expenseId: string, @Body() updatedExpense: UpdateExpenseDto) {
+    console.log('id', +id, 'expenseId', +expenseId);
+    return this.usersService.updateVariableMonthlyExpense(+id, +expenseId, updatedExpense);
+  }
+
+  @Delete(':id/variablemonthlyexpenses/:expenseId')
+  deleteVariableMonthlyExpense(@Param('id') id: string, @Param('expenseId') expenseId: string) {
+    return this.usersService.deleteVariableMonthlyExpense(+id, +expenseId);
   }
 }
