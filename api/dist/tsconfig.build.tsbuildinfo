@@ -1182,8 +1182,8 @@
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/goal.interface.ts": {
-        "version": "753e4d1f6de765b22bb390bb3dc6b93f76346454bca30082d13f28247ecdfeb5",
-        "signature": "07ba55e106ff114dda753092c70a88c2e5aeba3548278a228d14071bf88b3ab0",
+        "version": "db2e671340d97cf3e5e4b491d7410b124c407fe7d24a518b633171ba1f42898a",
+        "signature": "3dd48b1abdde937950bc38ab955b87894069ffdf7970d389a3a0ad7685986a8e",
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/user.interface.ts": {
@@ -1236,14 +1236,29 @@
         "signature": "a9a78b286be5b430b890995a757b4819a17866126a287b7a7640b985c230424a",
         "affectsGlobalScope": false
       },
+      "../src/users/dto/create-goal.dto.ts": {
+        "version": "1e57f33aa14125ca48afabaab1501ab1bb42ece4d2d8857f6bd54d9061c143aa",
+        "signature": "8d4950ebbf51fc5130a4a4c3a2903b6b7d00eabf00afdf2c3e0dc239fb32c262",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/update-goal.dto.ts": {
+        "version": "62fa670ff070775df9f723dbb4639ad3ca6b3619cfcb3ae804fdf6ccc9b882c6",
+        "signature": "f630f6c588e80d81ba10c65fb8dc592e8248722c48c49d886706e4df42bb38aa",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/delete-goal.dto.ts": {
+        "version": "5adb45c966ddaca468bc77ac8a2af4b7ee40a297e3d2363238d171717c0ce121",
+        "signature": "35adfaac881ecd4c6758e815da148506499f3468816d25114d61dd389398af0a",
+        "affectsGlobalScope": false
+      },
       "../src/users/users.service.ts": {
-        "version": "dc64755f743f5ea111656a8ea3adfbe8de51f88945d901588120e305deb2b813",
-        "signature": "3d6c39cf703b93dc931166e597c6bd8cade6bc970e7a63c6885d0a1770423713",
+        "version": "57323e43a90905d0413eb6a25cbf3b9c370e95cc60b02155f5154fbd4be4fc86",
+        "signature": "9444d7be793f2c7619ceb7920debc5d28e90b3efbdf4d855285a90a9833c592b",
         "affectsGlobalScope": false
       },
       "../src/users/users.controller.ts": {
-        "version": "93c5093e07d03dcb5634355099624f8324934f3dddadfa6bec01853b63e9ef15",
-        "signature": "893125e9ab6d59c3b984bde6af91ab8df6d2dab6e97c57ac5b136980a118b1f2",
+        "version": "10dc7e9b0dd418c22884d024d5561ed16ccaab94e19a8d482695f78a6ade91f5",
+        "signature": "2cd94018beda394dc0a02e0c1bbb8c9073325760be525e0150d857e81a1d2734",
         "affectsGlobalScope": false
       },
       "../src/users/users.module.ts": {
@@ -5280,6 +5295,13 @@
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts"
       ],
+      "../src/users/dto/create-goal.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/create-user.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
@@ -5305,6 +5327,13 @@
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts"
       ],
+      "../src/users/dto/delete-goal.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/delete-user.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
@@ -5320,6 +5349,13 @@
         "../node_modules/@types/node/ts3.4/util.d.ts"
       ],
       "../src/users/dto/update-expense.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
+      "../src/users/dto/update-goal.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
         "../node_modules/@types/node/ts3.1/util.d.ts",
@@ -5385,15 +5421,19 @@
         "../node_modules/@types/node/ts3.4/util.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
+        "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
+        "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
+        "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
+        "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts",
         "../src/users/users.service.ts"
       ],
@@ -5416,15 +5456,19 @@
         "../node_modules/@types/node/ts3.4/util.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
+        "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
+        "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
+        "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
+        "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts"
       ]
     },
@@ -8726,15 +8770,19 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
+        "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
+        "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
+        "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
+        "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts",
         "../src/users/users.service.ts"
       ],
@@ -8742,15 +8790,19 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
+        "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
+        "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
+        "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
+        "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts"
       ]
     },
@@ -9128,12 +9180,15 @@
       "../src/main.ts",
       "../src/users/dto/create-bank-account.dto.ts",
       "../src/users/dto/create-expense.dto.ts",
+      "../src/users/dto/create-goal.dto.ts",
       "../src/users/dto/create-user.dto.ts",
       "../src/users/dto/delete-bank-account.dto.ts",
       "../src/users/dto/delete-expense.dto.ts",
+      "../src/users/dto/delete-goal.dto.ts",
       "../src/users/dto/delete-user.dto.ts",
       "../src/users/dto/update-bank-account.dto.ts",
       "../src/users/dto/update-expense.dto.ts",
+      "../src/users/dto/update-goal.dto.ts",
       "../src/users/dto/update-user.dto.ts",
       "../src/users/interfaces/bank-account.interface.ts",
       "../src/users/interfaces/cash-flow-distribution.interface.ts",

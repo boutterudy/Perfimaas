@@ -12,6 +12,10 @@ import { BankAccount } from './interfaces/bank-account.interface';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { DeleteBankAccountDto } from './dto/delete-bank-account.dto';
+import { Goal } from './interfaces/goal.interface';
+import { CreateGoalDto } from './dto/create-goal.dto';
+import { UpdateGoalDto } from './dto/update-goal.dto';
+import { DeleteGoalDto } from './dto/delete-goal.dto';
 
 @Controller('users')
 export class UsersController {
@@ -108,17 +112,43 @@ export class UsersController {
   }
 
   @Post(':id/bankaccounts')
-  createBankAccounts(@Param('id') id: string, @Body() newExpense: CreateBankAccountDto) {
-    return this.usersService.createBankAccounts(+id, newExpense);
+  createBankAccounts(@Param('id') id: string, @Body() newBankAccount: CreateBankAccountDto) {
+    return this.usersService.createBankAccounts(+id, newBankAccount);
   }
 
   @Patch(':id/bankaccounts/:bankAccountId')
-  updateBankAccounts(@Param('id') id: string, @Param('bankAccountId') bankAccountId: string, @Body() updatedExpense: UpdateBankAccountDto) {
-    return this.usersService.updateBankAccounts(+id, +bankAccountId, updatedExpense);
+  updateBankAccounts(@Param('id') id: string, @Param('bankAccountId') bankAccountId: string, @Body() updatedBankAccount: UpdateBankAccountDto) {
+    return this.usersService.updateBankAccounts(+id, +bankAccountId, updatedBankAccount);
   }
 
   @Delete(':id/bankaccounts/:bankAccountId')
   deleteBankAccounts(@Param('id') id: string, @Param('bankAccountId') bankAccountId: string): DeleteBankAccountDto | NotFoundException {
     return this.usersService.deleteBankAccounts(+id, +bankAccountId);
+  }
+
+  // Users goals
+  @Get(':id/goals')
+  getGoals(@Param('id') id: string): Goal[] | NotFoundException {
+    return this.usersService.getGoals(+id);
+  }
+
+  @Get(':id/goals/:goalId')
+  getGoalById(@Param('id') id: string, @Param('goalId') goalId: string): Goal | NotFoundException {
+    return this.usersService.getGoalById(+id, +goalId);
+  }
+
+  @Post(':id/goals')
+  createGoal(@Param('id') id: string, @Body() newGoal: CreateGoalDto) {
+    return this.usersService.createGoal(+id, newGoal);
+  }
+
+  @Patch(':id/goals/:goalId')
+  updateGoal(@Param('id') id: string, @Param('goalId') goalId: string, @Body() updatedGoal: UpdateGoalDto) {
+    return this.usersService.updateGoal(+id, +goalId, updatedGoal);
+  }
+
+  @Delete(':id/goals/:goalId')
+  deleteGoal(@Param('id') id: string, @Param('goalId') goalId: string): DeleteGoalDto | NotFoundException {
+    return this.usersService.deleteGoal(+id, +goalId);
   }
 }

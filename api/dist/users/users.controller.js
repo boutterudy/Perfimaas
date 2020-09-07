@@ -21,6 +21,8 @@ const create_expense_dto_1 = require("./dto/create-expense.dto");
 const update_expense_dto_1 = require("./dto/update-expense.dto");
 const create_bank_account_dto_1 = require("./dto/create-bank-account.dto");
 const update_bank_account_dto_1 = require("./dto/update-bank-account.dto");
+const create_goal_dto_1 = require("./dto/create-goal.dto");
+const update_goal_dto_1 = require("./dto/update-goal.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -76,14 +78,29 @@ let UsersController = class UsersController {
     getBankAccountById(id, bankAccountId) {
         return this.usersService.getBankAccountById(+id, +bankAccountId);
     }
-    createBankAccounts(id, newExpense) {
-        return this.usersService.createBankAccounts(+id, newExpense);
+    createBankAccounts(id, newBankAccount) {
+        return this.usersService.createBankAccounts(+id, newBankAccount);
     }
-    updateBankAccounts(id, bankAccountId, updatedExpense) {
-        return this.usersService.updateBankAccounts(+id, +bankAccountId, updatedExpense);
+    updateBankAccounts(id, bankAccountId, updatedBankAccount) {
+        return this.usersService.updateBankAccounts(+id, +bankAccountId, updatedBankAccount);
     }
     deleteBankAccounts(id, bankAccountId) {
         return this.usersService.deleteBankAccounts(+id, +bankAccountId);
+    }
+    getGoals(id) {
+        return this.usersService.getGoals(+id);
+    }
+    getGoalById(id, goalId) {
+        return this.usersService.getGoalById(+id, +goalId);
+    }
+    createGoal(id, newGoal) {
+        return this.usersService.createGoal(+id, newGoal);
+    }
+    updateGoal(id, goalId, updatedGoal) {
+        return this.usersService.updateGoal(+id, +goalId, updatedGoal);
+    }
+    deleteGoal(id, goalId) {
+        return this.usersService.deleteGoal(+id, +goalId);
     }
 };
 __decorate([
@@ -225,6 +242,41 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "deleteBankAccounts", null);
+__decorate([
+    common_1.Get(':id/goals'),
+    __param(0, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getGoals", null);
+__decorate([
+    common_1.Get(':id/goals/:goalId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('goalId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getGoalById", null);
+__decorate([
+    common_1.Post(':id/goals'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_goal_dto_1.CreateGoalDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createGoal", null);
+__decorate([
+    common_1.Patch(':id/goals/:goalId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('goalId')), __param(2, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, update_goal_dto_1.UpdateGoalDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateGoal", null);
+__decorate([
+    common_1.Delete(':id/goals/:goalId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('goalId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "deleteGoal", null);
 UsersController = __decorate([
     common_1.Controller('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

@@ -11,6 +11,10 @@ import { DeleteBankAccountDto } from './dto/delete-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { CreateExpenseDto } from './dto/create-expense.dto';
+import { Goal } from './interfaces/goal.interface';
+import { CreateGoalDto } from './dto/create-goal.dto';
+import { UpdateGoalDto } from './dto/update-goal.dto';
+import { DeleteGoalDto } from './dto/delete-goal.dto';
 export declare class UsersService {
     users: User[];
     getAll(): User[];
@@ -33,4 +37,9 @@ export declare class UsersService {
     createBankAccounts(id: number, newBankAccount: CreateBankAccountDto): BankAccount[] | NotFoundException;
     updateBankAccounts(id: number, bankAccountId: number, updatedBankAccount: UpdateBankAccountDto): BankAccount | NotFoundException;
     deleteBankAccounts(id: number, bankAccountId: number): DeleteBankAccountDto | NotFoundException;
+    getGoals(id: number): Goal[] | NotFoundException;
+    getGoalById(id: number, goalId: number): Goal | NotFoundException;
+    createGoal(id: number, newGoal: CreateGoalDto): Goal[] | NotFoundException;
+    updateGoal(id: number, goalId: number, updatedGoal: UpdateGoalDto): Goal | NotFoundException;
+    deleteGoal(id: number, goalId: number): DeleteGoalDto | NotFoundException;
 }

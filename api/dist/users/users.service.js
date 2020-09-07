@@ -100,6 +100,7 @@ let UsersService = class UsersService {
                 safetySavingsGoal: 4,
                 goals: [
                     {
+                        id: 1,
                         title: "Travel to Vietnam and Cambodia",
                         amount: 4076.00,
                     },
@@ -404,6 +405,85 @@ let UsersService = class UsersService {
                 return {
                     bankAccountsDeleted: nbOfBankAccountsBeforeDelete - user.bankAccounts.length,
                     nbBankAccountsAfterDelete: user.bankAccounts.length,
+                };
+            }
+        }
+    }
+    getGoals(id) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            return user.goals;
+        }
+    }
+    getGoalById(id, goalId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const goal = user.goals.find(g => g.id === goalId);
+            if (!goal) {
+                return new common_1.NotFoundException('Cannot find any goal with id ' + id);
+            }
+            else {
+                return goal;
+            }
+        }
+    }
+    createGoal(id, newGoal) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            user.goals = [...user.goals, newGoal];
+            this.users = [...this.users.map(u => u.id !== id ? u : user)];
+            return user.goals;
+        }
+    }
+    updateGoal(id, goalId, updatedGoal) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const goal = user.goals.find(g => g.id === goalId);
+            if (!goal) {
+                return new common_1.NotFoundException('Cannot find any goal with id ' + goalId);
+            }
+            else {
+                if (updatedGoal.title) {
+                    goal.title = updatedGoal.title;
+                }
+                if (updatedGoal.hasOwnProperty('amount')) {
+                    goal.amount = updatedGoal.amount;
+                }
+                user.goals = [...user.goals.map(g => g.id !== goalId ? g : goal)];
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return this.users.find(u => u.id === id).goals.find(g => g.id === goalId);
+            }
+        }
+    }
+    deleteGoal(id, goalId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const goal = user.goals.find(g => g.id === goalId);
+            if (!goal) {
+                return new common_1.NotFoundException('Cannot find any goal with id ' + id);
+            }
+            else {
+                const nbOfGoalsBeforeDelete = user.goals.length;
+                user.goals = user.goals.filter(g => g.id !== goalId);
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return {
+                    goalsDeleted: nbOfGoalsBeforeDelete - user.goals.length,
+                    nbGoalsAfterDelete: user.goals.length,
                 };
             }
         }

@@ -12,6 +12,10 @@ import { BankAccount } from './interfaces/bank-account.interface';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { DeleteBankAccountDto } from './dto/delete-bank-account.dto';
+import { Goal } from './interfaces/goal.interface';
+import { CreateGoalDto } from './dto/create-goal.dto';
+import { UpdateGoalDto } from './dto/update-goal.dto';
+import { DeleteGoalDto } from './dto/delete-goal.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
@@ -32,7 +36,12 @@ export declare class UsersController {
     deleteVariableMonthlyExpense(id: string, expenseId: string): DeleteExpenseDto | NotFoundException;
     getBankAccounts(id: string): BankAccount[] | NotFoundException;
     getBankAccountById(id: string, bankAccountId: string): BankAccount | NotFoundException;
-    createBankAccounts(id: string, newExpense: CreateBankAccountDto): NotFoundException | BankAccount[];
-    updateBankAccounts(id: string, bankAccountId: string, updatedExpense: UpdateBankAccountDto): BankAccount | NotFoundException;
+    createBankAccounts(id: string, newBankAccount: CreateBankAccountDto): NotFoundException | BankAccount[];
+    updateBankAccounts(id: string, bankAccountId: string, updatedBankAccount: UpdateBankAccountDto): NotFoundException | BankAccount;
     deleteBankAccounts(id: string, bankAccountId: string): DeleteBankAccountDto | NotFoundException;
+    getGoals(id: string): Goal[] | NotFoundException;
+    getGoalById(id: string, goalId: string): Goal | NotFoundException;
+    createGoal(id: string, newGoal: CreateGoalDto): NotFoundException | Goal[];
+    updateGoal(id: string, goalId: string, updatedGoal: UpdateGoalDto): NotFoundException | Goal;
+    deleteGoal(id: string, goalId: string): DeleteGoalDto | NotFoundException;
 }

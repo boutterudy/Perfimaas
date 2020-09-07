@@ -11,6 +11,10 @@ import { DeleteBankAccountDto } from './dto/delete-bank-account.dto';
 import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
 import { CreateBankAccountDto } from './dto/create-bank-account.dto';
 import { CreateExpenseDto } from './dto/create-expense.dto';
+import { Goal } from './interfaces/goal.interface';
+import { CreateGoalDto } from './dto/create-goal.dto';
+import { UpdateGoalDto } from './dto/update-goal.dto';
+import { DeleteGoalDto } from './dto/delete-goal.dto';
 
 @Injectable()
 export class UsersService {
@@ -104,6 +108,7 @@ export class UsersService {
       safetySavingsGoal: 4,
       goals: [
         {
+          id: 1,
           title: "Travel to Vietnam and Cambodia",
           amount: 4076.00,
         },
@@ -417,6 +422,85 @@ export class UsersService {
         return {
           bankAccountsDeleted: nbOfBankAccountsBeforeDelete - user.bankAccounts.length,
           nbBankAccountsAfterDelete: user.bankAccounts.length,
+        }
+      }
+    }
+  }
+
+  // Users goals
+  getGoals(id: number): Goal[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      return user.goals;
+    }
+  }
+
+  getGoalById(id: number, goalId: number): Goal | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const goal = user.goals.find(g => g.id === goalId);
+      if(!goal) {
+        return new NotFoundException('Cannot find any goal with id ' + id);
+      } else {
+        return goal;
+      }
+    }
+  }
+
+  createGoal(id: number, newGoal: CreateGoalDto): Goal[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      user.goals = [...user.goals, newGoal];
+      this.users = [...this.users.map(u => u.id !== id ? u : user)];
+      return user.goals;
+    }
+  }
+
+  updateGoal(id: number, goalId: number, updatedGoal: UpdateGoalDto): Goal | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const goal = user.goals.find(g => g.id === goalId);
+      if(!goal) {
+        return new NotFoundException('Cannot find any goal with id ' + goalId);
+      } else {
+        if(updatedGoal.title) {
+          goal.title = updatedGoal.title;
+        }
+
+        if(updatedGoal.hasOwnProperty('amount')) {
+          goal.amount = updatedGoal.amount;
+        }
+
+        user.goals = [...user.goals.map(g => g.id !== goalId ? g : goal)];
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return this.users.find(u => u.id === id).goals.find(g => g.id === goalId);
+      }
+    }
+  }
+
+  deleteGoal(id: number, goalId: number): DeleteGoalDto | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const goal = user.goals.find(g => g.id === goalId);
+      if(!goal) {
+        return new NotFoundException('Cannot find any goal with id ' + id);
+      } else {
+        const nbOfGoalsBeforeDelete = user.goals.length;
+        user.goals = user.goals.filter(g => g.id !== goalId);
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return {
+          goalsDeleted: nbOfGoalsBeforeDelete - user.goals.length,
+          nbGoalsAfterDelete: user.goals.length,
         }
       }
     }
