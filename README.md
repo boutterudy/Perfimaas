@@ -17,12 +17,13 @@
 
 ## ✨ Features
 
- - [ ] User account configuration
- - [ ] List management of recurring expenses
- - [ ] List management of daily expenses
- - [ ] List management of bank accounts
- - [ ] Goal management
- - [ ] Management advice in the event of unexpected large inflows
+ - [X] User account configuration (API)
+ - [ ] List management of recurring expenses (API)
+ - [ ] List management of daily expenses (API)
+ - [ ] List management of bank accounts (API)
+ - [ ] Goal management (API)
+ - [ ] Management advice in the event of unexpected large inflows (API)
+ - [ ] Perfimaas front-end
 
 ## Getting started
 
