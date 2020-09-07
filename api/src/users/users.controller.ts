@@ -7,6 +7,11 @@ import { DeleteUserDto } from './dto/delete-user.dto';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { Expense } from './interfaces/expense.interface';
+import { DeleteExpenseDto } from './dto/delete-expense.dto';
+import { BankAccount } from './interfaces/bank-account.interface';
+import { CreateBankAccountDto } from './dto/create-bank-account.dto';
+import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
+import { DeleteBankAccountDto } from './dto/delete-bank-account.dto';
 
 @Controller('users')
 export class UsersController {
@@ -57,7 +62,6 @@ export class UsersController {
 
   @Patch(':id/fixedmonthlyexpenses/:expenseId')
   updateFixedMonthlyExpense(@Param('id') id: string, @Param('expenseId') expenseId: string, @Body() updatedExpense: UpdateExpenseDto) {
-    console.log('id', +id, 'expenseId', +expenseId);
     return this.usersService.updateFixedMonthlyExpense(+id, +expenseId, updatedExpense);
   }
 
@@ -84,12 +88,37 @@ export class UsersController {
 
   @Patch(':id/variablemonthlyexpenses/:expenseId')
   updateVariableMonthlyExpense(@Param('id') id: string, @Param('expenseId') expenseId: string, @Body() updatedExpense: UpdateExpenseDto) {
-    console.log('id', +id, 'expenseId', +expenseId);
     return this.usersService.updateVariableMonthlyExpense(+id, +expenseId, updatedExpense);
   }
 
   @Delete(':id/variablemonthlyexpenses/:expenseId')
-  deleteVariableMonthlyExpense(@Param('id') id: string, @Param('expenseId') expenseId: string) {
+  deleteVariableMonthlyExpense(@Param('id') id: string, @Param('expenseId') expenseId: string): DeleteExpenseDto | NotFoundException {
     return this.usersService.deleteVariableMonthlyExpense(+id, +expenseId);
+  }
+
+  // Users bank accounts
+  @Get(':id/bankaccounts')
+  getBankAccounts(@Param('id') id: string): BankAccount[] | NotFoundException {
+    return this.usersService.getBankAccounts(+id);
+  }
+
+  @Get(':id/bankaccounts/:bankAccountId')
+  getBankAccountById(@Param('id') id: string, @Param('bankAccountId') bankAccountId: string): BankAccount | NotFoundException {
+    return this.usersService.getBankAccountById(+id, +bankAccountId);
+  }
+
+  @Post(':id/bankaccounts')
+  createBankAccounts(@Param('id') id: string, @Body() newExpense: CreateBankAccountDto) {
+    return this.usersService.createBankAccounts(+id, newExpense);
+  }
+
+  @Patch(':id/bankaccounts/:bankAccountId')
+  updateBankAccounts(@Param('id') id: string, @Param('bankAccountId') bankAccountId: string, @Body() updatedExpense: UpdateBankAccountDto) {
+    return this.usersService.updateBankAccounts(+id, +bankAccountId, updatedExpense);
+  }
+
+  @Delete(':id/bankaccounts/:bankAccountId')
+  deleteBankAccounts(@Param('id') id: string, @Param('bankAccountId') bankAccountId: string): DeleteBankAccountDto | NotFoundException {
+    return this.usersService.deleteBankAccounts(+id, +bankAccountId);
   }
 }

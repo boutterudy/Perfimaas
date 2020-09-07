@@ -19,6 +19,8 @@ const create_user_dto_1 = require("./dto/create-user.dto");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const create_expense_dto_1 = require("./dto/create-expense.dto");
 const update_expense_dto_1 = require("./dto/update-expense.dto");
+const create_bank_account_dto_1 = require("./dto/create-bank-account.dto");
+const update_bank_account_dto_1 = require("./dto/update-bank-account.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -48,7 +50,6 @@ let UsersController = class UsersController {
         return this.usersService.createFixedMonthlyExpense(+id, newExpense);
     }
     updateFixedMonthlyExpense(id, expenseId, updatedExpense) {
-        console.log('id', +id, 'expenseId', +expenseId);
         return this.usersService.updateFixedMonthlyExpense(+id, +expenseId, updatedExpense);
     }
     deleteFixedMonthlyExpense(id, expenseId) {
@@ -64,11 +65,25 @@ let UsersController = class UsersController {
         return this.usersService.createVariableMonthlyExpense(+id, newExpense);
     }
     updateVariableMonthlyExpense(id, expenseId, updatedExpense) {
-        console.log('id', +id, 'expenseId', +expenseId);
         return this.usersService.updateVariableMonthlyExpense(+id, +expenseId, updatedExpense);
     }
     deleteVariableMonthlyExpense(id, expenseId) {
         return this.usersService.deleteVariableMonthlyExpense(+id, +expenseId);
+    }
+    getBankAccounts(id) {
+        return this.usersService.getBankAccounts(+id);
+    }
+    getBankAccountById(id, bankAccountId) {
+        return this.usersService.getBankAccountById(+id, +bankAccountId);
+    }
+    createBankAccounts(id, newExpense) {
+        return this.usersService.createBankAccounts(+id, newExpense);
+    }
+    updateBankAccounts(id, bankAccountId, updatedExpense) {
+        return this.usersService.updateBankAccounts(+id, +bankAccountId, updatedExpense);
+    }
+    deleteBankAccounts(id, bankAccountId) {
+        return this.usersService.deleteBankAccounts(+id, +bankAccountId);
     }
 };
 __decorate([
@@ -173,8 +188,43 @@ __decorate([
     __param(0, common_1.Param('id')), __param(1, common_1.Param('expenseId')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Object)
 ], UsersController.prototype, "deleteVariableMonthlyExpense", null);
+__decorate([
+    common_1.Get(':id/bankaccounts'),
+    __param(0, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getBankAccounts", null);
+__decorate([
+    common_1.Get(':id/bankaccounts/:bankAccountId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('bankAccountId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getBankAccountById", null);
+__decorate([
+    common_1.Post(':id/bankaccounts'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_bank_account_dto_1.CreateBankAccountDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createBankAccounts", null);
+__decorate([
+    common_1.Patch(':id/bankaccounts/:bankAccountId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('bankAccountId')), __param(2, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, update_bank_account_dto_1.UpdateBankAccountDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateBankAccounts", null);
+__decorate([
+    common_1.Delete(':id/bankaccounts/:bankAccountId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('bankAccountId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "deleteBankAccounts", null);
 UsersController = __decorate([
     common_1.Controller('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

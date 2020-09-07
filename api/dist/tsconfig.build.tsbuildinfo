@@ -1172,8 +1172,8 @@
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/bank-account.interface.ts": {
-        "version": "48afdc21a0c2fa282682ee5f6937ed047beeaeff1e105db30d975d50e92028cc",
-        "signature": "049148975204b013c5abb4eccaec9b8544ce90596fe8e2b34f6c5cd92e22302a",
+        "version": "204dafcb6281b8266af7f6e8242cb7bdc1cca3ed167f9ec4071a3fbc3e1c2ddd",
+        "signature": "9cacb617f368c03bc0116f55605070c0761378a2f11524140278490f676a75fb",
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/cash-flow-distribution.interface.ts": {
@@ -1216,9 +1216,19 @@
         "signature": "d7faa910e0bae7223dd248d9c573a201ddb1d82559edc744b6f0b93e1cda912b",
         "affectsGlobalScope": false
       },
-      "../src/users/users.service.ts": {
-        "version": "6f4d09193656bdb996daebe48ad25c3d0ab19398e4b990f7264d072814ca02ec",
-        "signature": "53e16c1e907a4c1de52787f671bc86987e96711ef2f8422251c838489f6ed375",
+      "../src/users/dto/delete-bank-account.dto.ts": {
+        "version": "9ca3ad6f0b54b48368b31dfc12b688ccefdc43bb38b895c2b3a4c2f00e423578",
+        "signature": "51db1926b9220158135c7befacb68621048a9fe09bfdc9a8e34c11cb5deb392b",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/update-bank-account.dto.ts": {
+        "version": "837fc936af2f6081ca1d9f94b919609c696b493b9daf787514cff6d7d077eb76",
+        "signature": "07f6e42094d99f936b20f62cc98804abf050751bd01a9fcb8926778a715e8057",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/create-bank-account.dto.ts": {
+        "version": "cb4d068fc76ae3e36e206e947fa55f4f2824913b3eef01c45beaecd6d61b70ed",
+        "signature": "dadae456932cfa1c71afa93b466ca0554f2d27648e4fb7a75e3af59e8bad357b",
         "affectsGlobalScope": false
       },
       "../src/users/dto/create-expense.dto.ts": {
@@ -1226,9 +1236,14 @@
         "signature": "a9a78b286be5b430b890995a757b4819a17866126a287b7a7640b985c230424a",
         "affectsGlobalScope": false
       },
+      "../src/users/users.service.ts": {
+        "version": "dc64755f743f5ea111656a8ea3adfbe8de51f88945d901588120e305deb2b813",
+        "signature": "3d6c39cf703b93dc931166e597c6bd8cade6bc970e7a63c6885d0a1770423713",
+        "affectsGlobalScope": false
+      },
       "../src/users/users.controller.ts": {
-        "version": "522acdc33950c4cc121fe8ab185ece6b7b3295294223c3bff0a7d7a6d73d7401",
-        "signature": "2cde5fc7908f84ec0fc01ef2e9ffc90389279d91ca37cbb5ecb8e612796e1752",
+        "version": "93c5093e07d03dcb5634355099624f8324934f3dddadfa6bec01853b63e9ef15",
+        "signature": "893125e9ab6d59c3b984bde6af91ab8df6d2dab6e97c57ac5b136980a118b1f2",
         "affectsGlobalScope": false
       },
       "../src/users/users.module.ts": {
@@ -5251,6 +5266,13 @@
         "../node_modules/@types/node/ts3.4/util.d.ts",
         "../src/app.module.ts"
       ],
+      "../src/users/dto/create-bank-account.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/create-expense.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
@@ -5269,6 +5291,13 @@
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/goal.interface.ts"
       ],
+      "../src/users/dto/delete-bank-account.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/delete-expense.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
@@ -5277,6 +5306,13 @@
         "../node_modules/@types/node/ts3.4/util.d.ts"
       ],
       "../src/users/dto/delete-user.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
+      "../src/users/dto/update-bank-account.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
         "../node_modules/@types/node/ts3.1/util.d.ts",
@@ -5347,11 +5383,16 @@
         "../node_modules/@types/node/ts3.1/util.d.ts",
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts",
+        "../src/users/dto/create-bank-account.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/delete-bank-account.dto.ts",
+        "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts",
         "../src/users/users.service.ts"
@@ -5373,11 +5414,16 @@
         "../node_modules/@types/node/ts3.1/util.d.ts",
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts",
+        "../src/users/dto/create-bank-account.dto.ts",
+        "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/delete-bank-account.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts"
       ]
@@ -8678,23 +8724,32 @@
       ],
       "../src/users/users.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/users/dto/create-bank-account.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/delete-bank-account.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts",
         "../src/users/users.service.ts"
       ],
       "../src/users/users.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/users/dto/create-bank-account.dto.ts",
+        "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-user.dto.ts",
+        "../src/users/dto/delete-bank-account.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
+        "../src/users/dto/update-bank-account.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-user.dto.ts",
+        "../src/users/interfaces/bank-account.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/user.interface.ts"
       ]
@@ -9071,10 +9126,13 @@
       "../src/app.module.ts",
       "../src/app.service.ts",
       "../src/main.ts",
+      "../src/users/dto/create-bank-account.dto.ts",
       "../src/users/dto/create-expense.dto.ts",
       "../src/users/dto/create-user.dto.ts",
+      "../src/users/dto/delete-bank-account.dto.ts",
       "../src/users/dto/delete-expense.dto.ts",
       "../src/users/dto/delete-user.dto.ts",
+      "../src/users/dto/update-bank-account.dto.ts",
       "../src/users/dto/update-expense.dto.ts",
       "../src/users/dto/update-user.dto.ts",
       "../src/users/interfaces/bank-account.interface.ts",

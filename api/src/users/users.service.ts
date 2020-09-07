@@ -6,6 +6,11 @@ import { Expense } from './interfaces/expense.interface';
 import { DeleteUserDto } from './dto/delete-user.dto';
 import { DeleteExpenseDto } from './dto/delete-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
+import { BankAccount } from './interfaces/bank-account.interface';
+import { DeleteBankAccountDto } from './dto/delete-bank-account.dto';
+import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
+import { CreateBankAccountDto } from './dto/create-bank-account.dto';
+import { CreateExpenseDto } from './dto/create-expense.dto';
 
 @Injectable()
 export class UsersService {
@@ -54,21 +59,25 @@ export class UsersService {
       ],
       bankAccounts: [
         {
+          id: 1,
           bank: "CIC",
           charges: 6.00,
           usage: "Fixed monthly expenses and monthly income",
         },
         {
+          id: 2,
           bank: "N26",
           charges: 0.00,
           usage: "Daily (variable) expenses",
         },
         {
+          id: 3,
           bank: "CIC",
           charges: 6.00,
           usage: "Saving",
         },
         {
+          id: 4,
           bank: "Coinbase",
           charges: 0.00,
           usage: "Investments",
@@ -218,11 +227,11 @@ export class UsersService {
         return new NotFoundException('Cannot find any expense with id ' + expenseId);
       } else {
         if(updatedExpense.title) {
-          fixedMonthlyExpense.title = updatedExpense.title
+          fixedMonthlyExpense.title = updatedExpense.title;
         }
 
         if(updatedExpense.hasOwnProperty('amount')) {
-          fixedMonthlyExpense.amount = updatedExpense.amount
+          fixedMonthlyExpense.amount = updatedExpense.amount;
         }
 
         user.fixedMonthlyExpenses = [...user.fixedMonthlyExpenses.map(e => e.id !== expenseId ? e : fixedMonthlyExpense)];
@@ -276,7 +285,7 @@ export class UsersService {
     }
   }
 
-  createVariableMonthlyExpense(id: number, newExpense: Expense): Expense[] | NotFoundException {
+  createVariableMonthlyExpense(id: number, newExpense: CreateExpenseDto): Expense[] | NotFoundException {
     const user = this.users.find(user => user.id === id);
     if(!user) {
       return new NotFoundException('Cannot find any user with id ' + id);
@@ -297,11 +306,11 @@ export class UsersService {
         return new NotFoundException('Cannot find any expense with id ' + expenseId);
       } else {
         if(updatedExpense.title) {
-          variableMonthlyExpense.title = updatedExpense.title
+          variableMonthlyExpense.title = updatedExpense.title;
         }
 
         if(updatedExpense.hasOwnProperty('amount')) {
-          variableMonthlyExpense.amount = updatedExpense.amount
+          variableMonthlyExpense.amount = updatedExpense.amount;
         }
 
         user.variableMonthlyExpenses = [...user.variableMonthlyExpenses.map(e => e.id !== expenseId ? e : variableMonthlyExpense)];
@@ -326,6 +335,88 @@ export class UsersService {
         return {
           expensesDeleted: nbOfExpensesBeforeDelete - user.variableMonthlyExpenses.length,
           nbExpensesAfterDelete: user.variableMonthlyExpenses.length,
+        }
+      }
+    }
+  }
+
+  // Users bank accounts
+  getBankAccounts(id: number): BankAccount[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      return user.bankAccounts;
+    }
+  }
+
+  getBankAccountById(id: number, bankAccountId: number): BankAccount | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+      if(!bankAccount) {
+        return new NotFoundException('Cannot find any bank account with id ' + id);
+      } else {
+        return bankAccount;
+      }
+    }
+  }
+
+  createBankAccounts(id: number, newBankAccount: CreateBankAccountDto): BankAccount[] | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      user.bankAccounts = [...user.bankAccounts, newBankAccount];
+      this.users = [...this.users.map(u => u.id !== id ? u : user)];
+      return user.bankAccounts;
+    }
+  }
+
+  updateBankAccounts(id: number, bankAccountId: number, updatedBankAccount: UpdateBankAccountDto): BankAccount | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+      if(!bankAccount) {
+        return new NotFoundException('Cannot find any bank account with id ' + bankAccountId);
+      } else {
+        if(updatedBankAccount.bank) {
+          bankAccount.bank = updatedBankAccount.bank;
+        }
+
+        if(updatedBankAccount.hasOwnProperty('charges')) {
+          bankAccount.charges = updatedBankAccount.charges;
+        }
+        if(updatedBankAccount.usage) {
+          bankAccount.usage = updatedBankAccount.usage;
+        }
+
+        user.bankAccounts = [...user.bankAccounts.map(e => e.id !== bankAccountId ? e : bankAccount)];
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return this.users.find(u => u.id === id).bankAccounts.find(ba => ba.id === bankAccountId);
+      }
+    }
+  }
+
+  deleteBankAccounts(id: number, bankAccountId: number): DeleteBankAccountDto | NotFoundException {
+    const user = this.users.find(user => user.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      const bankAccounts = user.bankAccounts.find(ba => ba.id === bankAccountId);
+      if(!bankAccounts) {
+        return new NotFoundException('Cannot find any bank account with id ' + id);
+      } else {
+        const nbOfBankAccountsBeforeDelete = user.bankAccounts.length;
+        user.bankAccounts = user.bankAccounts.filter(ba => ba.id !== bankAccountId);
+        this.users = [...this.users.map(u => u.id !== id ? u : user)];
+        return {
+          bankAccountsDeleted: nbOfBankAccountsBeforeDelete - user.bankAccounts.length,
+          nbBankAccountsAfterDelete: user.bankAccounts.length,
         }
       }
     }

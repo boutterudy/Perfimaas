@@ -7,6 +7,11 @@ import { DeleteUserDto } from './dto/delete-user.dto';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { Expense } from './interfaces/expense.interface';
+import { DeleteExpenseDto } from './dto/delete-expense.dto';
+import { BankAccount } from './interfaces/bank-account.interface';
+import { CreateBankAccountDto } from './dto/create-bank-account.dto';
+import { UpdateBankAccountDto } from './dto/update-bank-account.dto';
+import { DeleteBankAccountDto } from './dto/delete-bank-account.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
@@ -17,12 +22,17 @@ export declare class UsersController {
     deleteUser(id: string): DeleteUserDto | NotFoundException;
     getFixedMonthlyExpenses(id: string): Expense[] | NotFoundException;
     getFixedMonthlyExpenseById(id: string, expenseId: string): Expense | NotFoundException;
-    createFixedMonthlyExpense(id: string, newExpense: CreateExpenseDto): Expense[] | NotFoundException;
-    updateFixedMonthlyExpense(id: string, expenseId: string, updatedExpense: UpdateExpenseDto): Expense | NotFoundException;
-    deleteFixedMonthlyExpense(id: string, expenseId: string): NotFoundException | import("./dto/delete-expense.dto").DeleteExpenseDto;
+    createFixedMonthlyExpense(id: string, newExpense: CreateExpenseDto): NotFoundException | Expense[];
+    updateFixedMonthlyExpense(id: string, expenseId: string, updatedExpense: UpdateExpenseDto): NotFoundException | Expense;
+    deleteFixedMonthlyExpense(id: string, expenseId: string): NotFoundException | DeleteExpenseDto;
     getVariableMonthlyExpenses(id: string): Expense[] | NotFoundException;
     getVariableMonthlyExpenseById(id: string, expenseId: string): Expense | NotFoundException;
-    createVariableMonthlyExpense(id: string, newExpense: CreateExpenseDto): Expense[] | NotFoundException;
-    updateVariableMonthlyExpense(id: string, expenseId: string, updatedExpense: UpdateExpenseDto): Expense | NotFoundException;
-    deleteVariableMonthlyExpense(id: string, expenseId: string): NotFoundException | import("./dto/delete-expense.dto").DeleteExpenseDto;
+    createVariableMonthlyExpense(id: string, newExpense: CreateExpenseDto): NotFoundException | Expense[];
+    updateVariableMonthlyExpense(id: string, expenseId: string, updatedExpense: UpdateExpenseDto): NotFoundException | Expense;
+    deleteVariableMonthlyExpense(id: string, expenseId: string): DeleteExpenseDto | NotFoundException;
+    getBankAccounts(id: string): BankAccount[] | NotFoundException;
+    getBankAccountById(id: string, bankAccountId: string): BankAccount | NotFoundException;
+    createBankAccounts(id: string, newExpense: CreateBankAccountDto): NotFoundException | BankAccount[];
+    updateBankAccounts(id: string, bankAccountId: string, updatedExpense: UpdateBankAccountDto): BankAccount | NotFoundException;
+    deleteBankAccounts(id: string, bankAccountId: string): DeleteBankAccountDto | NotFoundException;
 }

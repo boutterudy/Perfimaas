@@ -55,21 +55,25 @@ let UsersService = class UsersService {
                 ],
                 bankAccounts: [
                     {
+                        id: 1,
                         bank: "CIC",
                         charges: 6.00,
                         usage: "Fixed monthly expenses and monthly income",
                     },
                     {
+                        id: 2,
                         bank: "N26",
                         charges: 0.00,
                         usage: "Daily (variable) expenses",
                     },
                     {
+                        id: 3,
                         bank: "CIC",
                         charges: 6.00,
                         usage: "Saving",
                     },
                     {
+                        id: 4,
                         bank: "Coinbase",
                         charges: 0.00,
                         usage: "Investments",
@@ -318,6 +322,88 @@ let UsersService = class UsersService {
                 return {
                     expensesDeleted: nbOfExpensesBeforeDelete - user.variableMonthlyExpenses.length,
                     nbExpensesAfterDelete: user.variableMonthlyExpenses.length,
+                };
+            }
+        }
+    }
+    getBankAccounts(id) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            return user.bankAccounts;
+        }
+    }
+    getBankAccountById(id, bankAccountId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+            if (!bankAccount) {
+                return new common_1.NotFoundException('Cannot find any bank account with id ' + id);
+            }
+            else {
+                return bankAccount;
+            }
+        }
+    }
+    createBankAccounts(id, newBankAccount) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            user.bankAccounts = [...user.bankAccounts, newBankAccount];
+            this.users = [...this.users.map(u => u.id !== id ? u : user)];
+            return user.bankAccounts;
+        }
+    }
+    updateBankAccounts(id, bankAccountId, updatedBankAccount) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+            if (!bankAccount) {
+                return new common_1.NotFoundException('Cannot find any bank account with id ' + bankAccountId);
+            }
+            else {
+                if (updatedBankAccount.bank) {
+                    bankAccount.bank = updatedBankAccount.bank;
+                }
+                if (updatedBankAccount.hasOwnProperty('charges')) {
+                    bankAccount.charges = updatedBankAccount.charges;
+                }
+                if (updatedBankAccount.usage) {
+                    bankAccount.usage = updatedBankAccount.usage;
+                }
+                user.bankAccounts = [...user.bankAccounts.map(e => e.id !== bankAccountId ? e : bankAccount)];
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return this.users.find(u => u.id === id).bankAccounts.find(ba => ba.id === bankAccountId);
+            }
+        }
+    }
+    deleteBankAccounts(id, bankAccountId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const bankAccounts = user.bankAccounts.find(ba => ba.id === bankAccountId);
+            if (!bankAccounts) {
+                return new common_1.NotFoundException('Cannot find any bank account with id ' + id);
+            }
+            else {
+                const nbOfBankAccountsBeforeDelete = user.bankAccounts.length;
+                user.bankAccounts = user.bankAccounts.filter(ba => ba.id !== bankAccountId);
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return {
+                    bankAccountsDeleted: nbOfBankAccountsBeforeDelete - user.bankAccounts.length,
+                    nbBankAccountsAfterDelete: user.bankAccounts.length,
                 };
             }
         }
