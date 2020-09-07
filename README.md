@@ -20,7 +20,7 @@
  - [X] User account configuration (API)
  - [X] Fixed monthly expenses management (API)
  - [X] Variable monthly expenses management (API)
- - [ ] List management of bank accounts (API)
+ - [X] Bank accounts list management (API)
  - [ ] Goal management (API)
  - [ ] Management advice in the event of unexpected large inflows (API)
  - [ ] Perfimaas front-end
