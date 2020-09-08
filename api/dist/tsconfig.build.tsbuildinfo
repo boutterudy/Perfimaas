@@ -1177,8 +1177,8 @@
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/cash-flow-distribution.interface.ts": {
-        "version": "970774062e342321edae6b96816b9ef382bcf0cbce18cf5ffbf65735a53a4ad2",
-        "signature": "c546899cee1a724420f8ba7c8017b3d77639f7cfdf37509bceeed37d7e55e14b",
+        "version": "8b20de9ab6c02debd31baaabe94b91c5953c7ab770d99105b544c84f3f52468e",
+        "signature": "bd13fd68ba6bca01e75466fffbaa2e1cfd8c9a5c17ecf83782626b5d550f8b75",
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/goal.interface.ts": {
@@ -1251,14 +1251,29 @@
         "signature": "35adfaac881ecd4c6758e815da148506499f3468816d25114d61dd389398af0a",
         "affectsGlobalScope": false
       },
+      "../src/users/dto/delete-cash-flow-distribution.dto.ts": {
+        "version": "51eda3044ed947e4dd3eef07884520975b2d39e7af0ba91173b80dbe0c2f0cbc",
+        "signature": "e37458892989dcb91f48f644d1abb082eb5eaa3c4e11f0b5c6c40029d9f7d6aa",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/update-cash-flow-distribution.dto.ts": {
+        "version": "e51e181ebb8d11b38b764aa5cbb823f618326382223cbf2998dfc69d142ac7cd",
+        "signature": "14baae8dd4b84a4d6b49a361e4413fef2b733ba34325e8ae1c92528f395d9ffd",
+        "affectsGlobalScope": false
+      },
+      "../src/users/dto/create-cash-flow-distribution.dto.ts": {
+        "version": "d62fcc7f46928beac2e3203891850aa88af3e6fc245282a1b9ec9e578dd4af09",
+        "signature": "35b726a22edf379953c5dccbe824cd1a7fbcef0dbf9be03456f02e261aa4bbfe",
+        "affectsGlobalScope": false
+      },
       "../src/users/users.service.ts": {
-        "version": "57323e43a90905d0413eb6a25cbf3b9c370e95cc60b02155f5154fbd4be4fc86",
-        "signature": "9444d7be793f2c7619ceb7920debc5d28e90b3efbdf4d855285a90a9833c592b",
+        "version": "4413e153d35455475aa265c308b82defaa9aa4552e4e15c1327df7b349073944",
+        "signature": "687acc1065a1b92de4ff1064de4fb13a1c2977ca04686eab246163e2f848d37f",
         "affectsGlobalScope": false
       },
       "../src/users/users.controller.ts": {
-        "version": "10dc7e9b0dd418c22884d024d5561ed16ccaab94e19a8d482695f78a6ade91f5",
-        "signature": "2cd94018beda394dc0a02e0c1bbb8c9073325760be525e0150d857e81a1d2734",
+        "version": "9eb03387c958967ac47ac3eb36f9c0012156b14641ada763d362cf75151425cc",
+        "signature": "e7ee81d2cb067f6697a4eddcf73fa2e4f495c4c84df3578822f109705b4a8c75",
         "affectsGlobalScope": false
       },
       "../src/users/users.module.ts": {
@@ -5288,6 +5303,13 @@
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts"
       ],
+      "../src/users/dto/create-cash-flow-distribution.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/create-expense.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
@@ -5320,6 +5342,13 @@
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts"
       ],
+      "../src/users/dto/delete-cash-flow-distribution.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
       "../src/users/dto/delete-expense.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
@@ -5342,6 +5371,13 @@
         "../node_modules/@types/node/ts3.4/util.d.ts"
       ],
       "../src/users/dto/update-bank-account.dto.ts": [
+        "../node_modules/@types/graceful-fs/index.d.ts",
+        "../node_modules/@types/node/ts3.1/fs.d.ts",
+        "../node_modules/@types/node/ts3.1/util.d.ts",
+        "../node_modules/@types/node/ts3.4/fs.d.ts",
+        "../node_modules/@types/node/ts3.4/util.d.ts"
+      ],
+      "../src/users/dto/update-cash-flow-distribution.dto.ts": [
         "../node_modules/@types/graceful-fs/index.d.ts",
         "../node_modules/@types/node/ts3.1/fs.d.ts",
         "../node_modules/@types/node/ts3.1/util.d.ts",
@@ -5420,18 +5456,22 @@
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
+        "../src/users/dto/create-cash-flow-distribution.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
+        "../src/users/dto/delete-cash-flow-distribution.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
+        "../src/users/dto/update-cash-flow-distribution.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
+        "../src/users/interfaces/cash-flow-distribution.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts",
@@ -5455,18 +5495,22 @@
         "../node_modules/@types/node/ts3.4/fs.d.ts",
         "../node_modules/@types/node/ts3.4/util.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
+        "../src/users/dto/create-cash-flow-distribution.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
+        "../src/users/dto/delete-cash-flow-distribution.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
+        "../src/users/dto/update-cash-flow-distribution.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
+        "../src/users/interfaces/cash-flow-distribution.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts"
@@ -8769,18 +8813,22 @@
       "../src/users/users.controller.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
+        "../src/users/dto/create-cash-flow-distribution.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
+        "../src/users/dto/delete-cash-flow-distribution.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
+        "../src/users/dto/update-cash-flow-distribution.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
+        "../src/users/interfaces/cash-flow-distribution.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts",
@@ -8789,18 +8837,22 @@
       "../src/users/users.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/users/dto/create-bank-account.dto.ts",
+        "../src/users/dto/create-cash-flow-distribution.dto.ts",
         "../src/users/dto/create-expense.dto.ts",
         "../src/users/dto/create-goal.dto.ts",
         "../src/users/dto/create-user.dto.ts",
         "../src/users/dto/delete-bank-account.dto.ts",
+        "../src/users/dto/delete-cash-flow-distribution.dto.ts",
         "../src/users/dto/delete-expense.dto.ts",
         "../src/users/dto/delete-goal.dto.ts",
         "../src/users/dto/delete-user.dto.ts",
         "../src/users/dto/update-bank-account.dto.ts",
+        "../src/users/dto/update-cash-flow-distribution.dto.ts",
         "../src/users/dto/update-expense.dto.ts",
         "../src/users/dto/update-goal.dto.ts",
         "../src/users/dto/update-user.dto.ts",
         "../src/users/interfaces/bank-account.interface.ts",
+        "../src/users/interfaces/cash-flow-distribution.interface.ts",
         "../src/users/interfaces/expense.interface.ts",
         "../src/users/interfaces/goal.interface.ts",
         "../src/users/interfaces/user.interface.ts"
@@ -9179,14 +9231,17 @@
       "../src/app.service.ts",
       "../src/main.ts",
       "../src/users/dto/create-bank-account.dto.ts",
+      "../src/users/dto/create-cash-flow-distribution.dto.ts",
       "../src/users/dto/create-expense.dto.ts",
       "../src/users/dto/create-goal.dto.ts",
       "../src/users/dto/create-user.dto.ts",
       "../src/users/dto/delete-bank-account.dto.ts",
+      "../src/users/dto/delete-cash-flow-distribution.dto.ts",
       "../src/users/dto/delete-expense.dto.ts",
       "../src/users/dto/delete-goal.dto.ts",
       "../src/users/dto/delete-user.dto.ts",
       "../src/users/dto/update-bank-account.dto.ts",
+      "../src/users/dto/update-cash-flow-distribution.dto.ts",
       "../src/users/dto/update-expense.dto.ts",
       "../src/users/dto/update-goal.dto.ts",
       "../src/users/dto/update-user.dto.ts",

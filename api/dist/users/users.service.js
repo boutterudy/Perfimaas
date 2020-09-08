@@ -81,18 +81,22 @@ let UsersService = class UsersService {
                 ],
                 unexpectedCashFlowManagement: [
                     {
+                        id: 1,
                         title: "To make myself happy and to please others",
                         percentage: 33,
                     },
                     {
+                        id: 2,
                         title: "In savings",
                         percentage: 13,
                     },
                     {
+                        id: 3,
                         title: "In investments",
                         percentage: 50,
                     },
                     {
+                        id: 4,
                         title: "Donation to charity",
                         percentage: 4,
                     },
@@ -484,6 +488,85 @@ let UsersService = class UsersService {
                 return {
                     goalsDeleted: nbOfGoalsBeforeDelete - user.goals.length,
                     nbGoalsAfterDelete: user.goals.length,
+                };
+            }
+        }
+    }
+    getUnexpectedCashFlowManagement(id) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            return user.unexpectedCashFlowManagement;
+        }
+    }
+    getUnexpectedCashFlowManagementById(id, cashFlowDistributionId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const cashFlowDistribution = user.unexpectedCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            if (!cashFlowDistribution) {
+                return new common_1.NotFoundException('Cannot find any cash-flow distribution with id ' + id);
+            }
+            else {
+                return cashFlowDistribution;
+            }
+        }
+    }
+    createUnexpectedCashFlowManagement(id, newCashFlowDistribution) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            user.unexpectedCashFlowManagement = [...user.unexpectedCashFlowManagement, newCashFlowDistribution];
+            this.users = [...this.users.map(u => u.id !== id ? u : user)];
+            return user.unexpectedCashFlowManagement;
+        }
+    }
+    updateUnexpectedCashFlowManagement(id, cashFlowDistributionId, updatedCashFlowDistribution) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const cashFlowDistribution = user.unexpectedCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            if (!cashFlowDistribution) {
+                return new common_1.NotFoundException('Cannot find any cash-flow distribution with id ' + cashFlowDistributionId);
+            }
+            else {
+                if (updatedCashFlowDistribution.title) {
+                    cashFlowDistribution.title = updatedCashFlowDistribution.title;
+                }
+                if (updatedCashFlowDistribution.hasOwnProperty('percentage')) {
+                    cashFlowDistribution.percentage = updatedCashFlowDistribution.percentage;
+                }
+                user.unexpectedCashFlowManagement = [...user.unexpectedCashFlowManagement.map(cfd => cfd.id !== cashFlowDistributionId ? cfd : cashFlowDistribution)];
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return this.users.find(u => u.id === id).unexpectedCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            }
+        }
+    }
+    deleteUnexpectedCashFlowManagement(id, cashFlowDistributionId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const cashFlowDistribution = user.unexpectedCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            if (!cashFlowDistribution) {
+                return new common_1.NotFoundException('Cannot find any cash-flow distribution with id ' + id);
+            }
+            else {
+                const nbOfCashFlowDistributionsBeforeDelete = user.unexpectedCashFlowManagement.length;
+                user.unexpectedCashFlowManagement = user.unexpectedCashFlowManagement.filter(cfd => cfd.id !== cashFlowDistributionId);
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return {
+                    CashFlowDistributionsDeleted: nbOfCashFlowDistributionsBeforeDelete - user.unexpectedCashFlowManagement.length,
+                    nbCashFlowDistributionsAfterDelete: user.unexpectedCashFlowManagement.length,
                 };
             }
         }

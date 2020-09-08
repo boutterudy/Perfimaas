@@ -16,6 +16,10 @@ import { Goal } from './interfaces/goal.interface';
 import { CreateGoalDto } from './dto/create-goal.dto';
 import { UpdateGoalDto } from './dto/update-goal.dto';
 import { DeleteGoalDto } from './dto/delete-goal.dto';
+import { CashFlowDistribution } from './interfaces/cash-flow-distribution.interface';
+import { CreateCashFlowDistributionDto } from './dto/create-cash-flow-distribution.dto';
+import { UpdateCashFlowDistributionDto } from './dto/update-cash-flow-distribution.dto';
+import { DeleteCashFlowDistributionDto } from './dto/delete-cash-flow-distribution.dto';
 
 @Controller('users')
 export class UsersController {
@@ -150,5 +154,31 @@ export class UsersController {
   @Delete(':id/goals/:goalId')
   deleteGoal(@Param('id') id: string, @Param('goalId') goalId: string): DeleteGoalDto | NotFoundException {
     return this.usersService.deleteGoal(+id, +goalId);
+  }
+
+  // Users unexpected cash-flow management
+  @Get(':id/unexpectedcashflowmanagement')
+  getUnexpectedCashFlowManagement(@Param('id') id: string): CashFlowDistribution[] | NotFoundException {
+    return this.usersService.getUnexpectedCashFlowManagement(+id);
+  }
+
+  @Get(':id/unexpectedcashflowmanagement/:cashFlowDistributionId')
+  getUnexpectedCashFlowManagementById(@Param('id') id: string, @Param('cashFlowDistributionId') cashFlowDistributionId: string): CashFlowDistribution | NotFoundException {
+    return this.usersService.getUnexpectedCashFlowManagementById(+id, +cashFlowDistributionId);
+  }
+
+  @Post(':id/unexpectedcashflowmanagement')
+  createUnexpectedCashFlowManagement(@Param('id') id: string, @Body() newCashFlowDistribution: CreateCashFlowDistributionDto) {
+    return this.usersService.createUnexpectedCashFlowManagement(+id, newCashFlowDistribution);
+  }
+
+  @Patch(':id/unexpectedcashflowmanagement/:cashFlowDistributionId')
+  updateUnexpectedCashFlowManagement(@Param('id') id: string, @Param('cashFlowDistributionId') cashFlowDistributionId: string, @Body() updatedCashFlowDistribution: UpdateCashFlowDistributionDto) {
+    return this.usersService.updateUnexpectedCashFlowManagement(+id, +cashFlowDistributionId, updatedCashFlowDistribution);
+  }
+
+  @Delete(':id/unexpectedcashflowmanagement/:cashFlowDistributionId')
+  deleteUnexpectedCashFlowManagement(@Param('id') id: string, @Param('cashFlowDistributionId') cashFlowDistributionId: string): DeleteCashFlowDistributionDto | NotFoundException {
+    return this.usersService.deleteUnexpectedCashFlowManagement(+id, +cashFlowDistributionId);
   }
 }

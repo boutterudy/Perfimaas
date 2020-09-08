@@ -16,6 +16,10 @@ import { Goal } from './interfaces/goal.interface';
 import { CreateGoalDto } from './dto/create-goal.dto';
 import { UpdateGoalDto } from './dto/update-goal.dto';
 import { DeleteGoalDto } from './dto/delete-goal.dto';
+import { CashFlowDistribution } from './interfaces/cash-flow-distribution.interface';
+import { CreateCashFlowDistributionDto } from './dto/create-cash-flow-distribution.dto';
+import { UpdateCashFlowDistributionDto } from './dto/update-cash-flow-distribution.dto';
+import { DeleteCashFlowDistributionDto } from './dto/delete-cash-flow-distribution.dto';
 export declare class UsersController {
     private readonly usersService;
     constructor(usersService: UsersService);
@@ -44,4 +48,9 @@ export declare class UsersController {
     createGoal(id: string, newGoal: CreateGoalDto): NotFoundException | Goal[];
     updateGoal(id: string, goalId: string, updatedGoal: UpdateGoalDto): NotFoundException | Goal;
     deleteGoal(id: string, goalId: string): DeleteGoalDto | NotFoundException;
+    getUnexpectedCashFlowManagement(id: string): CashFlowDistribution[] | NotFoundException;
+    getUnexpectedCashFlowManagementById(id: string, cashFlowDistributionId: string): CashFlowDistribution | NotFoundException;
+    createUnexpectedCashFlowManagement(id: string, newCashFlowDistribution: CreateCashFlowDistributionDto): NotFoundException | CashFlowDistribution[];
+    updateUnexpectedCashFlowManagement(id: string, cashFlowDistributionId: string, updatedCashFlowDistribution: UpdateCashFlowDistributionDto): CashFlowDistribution | NotFoundException;
+    deleteUnexpectedCashFlowManagement(id: string, cashFlowDistributionId: string): DeleteCashFlowDistributionDto | NotFoundException;
 }

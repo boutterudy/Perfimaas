@@ -23,6 +23,8 @@ const create_bank_account_dto_1 = require("./dto/create-bank-account.dto");
 const update_bank_account_dto_1 = require("./dto/update-bank-account.dto");
 const create_goal_dto_1 = require("./dto/create-goal.dto");
 const update_goal_dto_1 = require("./dto/update-goal.dto");
+const create_cash_flow_distribution_dto_1 = require("./dto/create-cash-flow-distribution.dto");
+const update_cash_flow_distribution_dto_1 = require("./dto/update-cash-flow-distribution.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -101,6 +103,21 @@ let UsersController = class UsersController {
     }
     deleteGoal(id, goalId) {
         return this.usersService.deleteGoal(+id, +goalId);
+    }
+    getUnexpectedCashFlowManagement(id) {
+        return this.usersService.getUnexpectedCashFlowManagement(+id);
+    }
+    getUnexpectedCashFlowManagementById(id, cashFlowDistributionId) {
+        return this.usersService.getUnexpectedCashFlowManagementById(+id, +cashFlowDistributionId);
+    }
+    createUnexpectedCashFlowManagement(id, newCashFlowDistribution) {
+        return this.usersService.createUnexpectedCashFlowManagement(+id, newCashFlowDistribution);
+    }
+    updateUnexpectedCashFlowManagement(id, cashFlowDistributionId, updatedCashFlowDistribution) {
+        return this.usersService.updateUnexpectedCashFlowManagement(+id, +cashFlowDistributionId, updatedCashFlowDistribution);
+    }
+    deleteUnexpectedCashFlowManagement(id, cashFlowDistributionId) {
+        return this.usersService.deleteUnexpectedCashFlowManagement(+id, +cashFlowDistributionId);
     }
 };
 __decorate([
@@ -277,6 +294,41 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "deleteGoal", null);
+__decorate([
+    common_1.Get(':id/unexpectedcashflowmanagement'),
+    __param(0, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getUnexpectedCashFlowManagement", null);
+__decorate([
+    common_1.Get(':id/unexpectedcashflowmanagement/:cashFlowDistributionId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('cashFlowDistributionId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getUnexpectedCashFlowManagementById", null);
+__decorate([
+    common_1.Post(':id/unexpectedcashflowmanagement'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_cash_flow_distribution_dto_1.CreateCashFlowDistributionDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createUnexpectedCashFlowManagement", null);
+__decorate([
+    common_1.Patch(':id/unexpectedcashflowmanagement/:cashFlowDistributionId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('cashFlowDistributionId')), __param(2, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, update_cash_flow_distribution_dto_1.UpdateCashFlowDistributionDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateUnexpectedCashFlowManagement", null);
+__decorate([
+    common_1.Delete(':id/unexpectedcashflowmanagement/:cashFlowDistributionId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('cashFlowDistributionId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "deleteUnexpectedCashFlowManagement", null);
 UsersController = __decorate([
     common_1.Controller('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
