@@ -22,7 +22,7 @@
  - [X] Variable monthly expenses management (API)
  - [X] Bank accounts list management (API)
  - [X] Goal management (API)
- - [ ] Management advice in the event of unexpected large inflows (API)
+ - [X] Management of unexpected large cash-flow incomes (API)
  - [ ] Perfimaas front-end
 
 ## Getting started
