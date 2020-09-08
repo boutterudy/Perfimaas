@@ -8,6 +8,7 @@ export interface User {
     fixedMonthlyExpenses: Array<Expense>;
     variableMonthlyExpenses: Array<Expense>;
     bankAccounts: Array<BankAccount>;
+    surplusCashFlowManagement: Array<CashFlowDistribution>;
     unexpectedCashFlowManagement: Array<CashFlowDistribution>;
     safetySavingsGoal?: number;
     goals: Array<Goal>;

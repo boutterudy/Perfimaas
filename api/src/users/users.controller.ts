@@ -156,6 +156,32 @@ export class UsersController {
     return this.usersService.deleteGoal(+id, +goalId);
   }
 
+  // Users surplus cash-flow management
+  @Get(':id/surpluscashflowmanagement')
+  getSurplusCashFlowManagement(@Param('id') id: string): CashFlowDistribution[] | NotFoundException {
+    return this.usersService.getSurplusCashFlowManagement(+id);
+  }
+
+  @Get(':id/surpluscashflowmanagement/:cashFlowDistributionId')
+  getSurplusCashFlowManagementById(@Param('id') id: string, @Param('cashFlowDistributionId') cashFlowDistributionId: string): CashFlowDistribution | NotFoundException {
+    return this.usersService.getSurplusCashFlowManagementById(+id, +cashFlowDistributionId);
+  }
+
+  @Post(':id/surpluscashflowmanagement')
+  createSurplusCashFlowManagement(@Param('id') id: string, @Body() newCashFlowDistribution: CreateCashFlowDistributionDto) {
+    return this.usersService.createSurplusCashFlowManagement(+id, newCashFlowDistribution);
+  }
+
+  @Patch(':id/surpluscashflowmanagement/:cashFlowDistributionId')
+  updateSurplusCashFlowManagement(@Param('id') id: string, @Param('cashFlowDistributionId') cashFlowDistributionId: string, @Body() updatedCashFlowDistribution: UpdateCashFlowDistributionDto) {
+    return this.usersService.updateSurplusCashFlowManagement(+id, +cashFlowDistributionId, updatedCashFlowDistribution);
+  }
+
+  @Delete(':id/surpluscashflowmanagement/:cashFlowDistributionId')
+  deleteSurplusCashFlowManagement(@Param('id') id: string, @Param('cashFlowDistributionId') cashFlowDistributionId: string): DeleteCashFlowDistributionDto | NotFoundException {
+    return this.usersService.deleteSurplusCashFlowManagement(+id, +cashFlowDistributionId);
+  }
+
   // Users unexpected cash-flow management
   @Get(':id/unexpectedcashflowmanagement')
   getUnexpectedCashFlowManagement(@Param('id') id: string): CashFlowDistribution[] | NotFoundException {

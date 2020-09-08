@@ -1177,8 +1177,8 @@
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/cash-flow-distribution.interface.ts": {
-        "version": "8b20de9ab6c02debd31baaabe94b91c5953c7ab770d99105b544c84f3f52468e",
-        "signature": "bd13fd68ba6bca01e75466fffbaa2e1cfd8c9a5c17ecf83782626b5d550f8b75",
+        "version": "80cc4d11a667619c928c770aabe7d9ce7702d09614055992c5d2b6d52922ead9",
+        "signature": "9b4fa12d566363144b33cb6bc9acd3433774a4ef3c8a832afe98ab27084aa510",
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/goal.interface.ts": {
@@ -1187,13 +1187,13 @@
         "affectsGlobalScope": false
       },
       "../src/users/interfaces/user.interface.ts": {
-        "version": "c7df263726087ae602758e15ce155d249466b0a15d3942f55aec81e899f6fd98",
-        "signature": "e6f90108bdfb34482412242943b1b79e87075996bbcbaa1b3249948500650729",
+        "version": "38e5e429320296ebe4257ed1be674e5f2c8ac69ab9684552df1a32a46212ed8a",
+        "signature": "f8dc77852488ddce2ddc0cd715ca77bb96c489e4b812003b70f27f9fe5138aeb",
         "affectsGlobalScope": false
       },
       "../src/users/dto/create-user.dto.ts": {
-        "version": "90846d8b793a05a166f4414d5b92732aa4fa60c12e291b28d17a411e8225b792",
-        "signature": "22932b6e6b67ab6ef00d72f93eaafdee8791505053282aa846dc6bf64ad7f68c",
+        "version": "7e2d8e7524a1c85a666f340415bdd8036096a0b891af9163e6f4c9a259e3486e",
+        "signature": "23ae073838a0243cb83e6f32ad19728a51310af8c1e1fee89fd9f9ea3526cbe4",
         "affectsGlobalScope": false
       },
       "../src/users/dto/update-user.dto.ts": {
@@ -1257,8 +1257,8 @@
         "affectsGlobalScope": false
       },
       "../src/users/dto/update-cash-flow-distribution.dto.ts": {
-        "version": "e51e181ebb8d11b38b764aa5cbb823f618326382223cbf2998dfc69d142ac7cd",
-        "signature": "14baae8dd4b84a4d6b49a361e4413fef2b733ba34325e8ae1c92528f395d9ffd",
+        "version": "7f5c6edb7a2462857fe29987ba8036c87055f71aa818cfcf68d1df05ff534e9e",
+        "signature": "23e6aa0a37303d10b5e16c97f522ec414ea41467ac24a39c50607a72550b0adf",
         "affectsGlobalScope": false
       },
       "../src/users/dto/create-cash-flow-distribution.dto.ts": {
@@ -1267,13 +1267,13 @@
         "affectsGlobalScope": false
       },
       "../src/users/users.service.ts": {
-        "version": "4413e153d35455475aa265c308b82defaa9aa4552e4e15c1327df7b349073944",
-        "signature": "687acc1065a1b92de4ff1064de4fb13a1c2977ca04686eab246163e2f848d37f",
+        "version": "f26b4bd560a57c3ea40ec605fcb691d8075849c40df57421323f72bd5848a164",
+        "signature": "9e3cd350d44ccb501b98e64eccbd94d8909e0382f1beb3ddb278b4673a0e085d",
         "affectsGlobalScope": false
       },
       "../src/users/users.controller.ts": {
-        "version": "9eb03387c958967ac47ac3eb36f9c0012156b14641ada763d362cf75151425cc",
-        "signature": "e7ee81d2cb067f6697a4eddcf73fa2e4f495c4c84df3578822f109705b4a8c75",
+        "version": "a12cd9ee551eb44781cc7e34f6c2b212c97480f8c0d4caa5f329b00d8917c8f6",
+        "signature": "990f3496e2f8fa5a986c793fbdc2158ecb55513b342b6d202ab65affcf07853e",
         "affectsGlobalScope": false
       },
       "../src/users/users.module.ts": {

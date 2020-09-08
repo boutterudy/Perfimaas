@@ -46,6 +46,11 @@ export declare class UsersService {
     createGoal(id: number, newGoal: CreateGoalDto): Goal[] | NotFoundException;
     updateGoal(id: number, goalId: number, updatedGoal: UpdateGoalDto): Goal | NotFoundException;
     deleteGoal(id: number, goalId: number): DeleteGoalDto | NotFoundException;
+    getSurplusCashFlowManagement(id: number): CashFlowDistribution[] | NotFoundException;
+    getSurplusCashFlowManagementById(id: number, cashFlowDistributionId: number): CashFlowDistribution | NotFoundException;
+    createSurplusCashFlowManagement(id: number, newCashFlowDistribution: CreateCashFlowDistributionDto): CashFlowDistribution[] | NotFoundException;
+    updateSurplusCashFlowManagement(id: number, cashFlowDistributionId: number, updatedCashFlowDistribution: UpdateCashFlowDistributionDto): CashFlowDistribution | NotFoundException;
+    deleteSurplusCashFlowManagement(id: number, cashFlowDistributionId: number): DeleteCashFlowDistributionDto | NotFoundException;
     getUnexpectedCashFlowManagement(id: number): CashFlowDistribution[] | NotFoundException;
     getUnexpectedCashFlowManagementById(id: number, cashFlowDistributionId: number): CashFlowDistribution | NotFoundException;
     createUnexpectedCashFlowManagement(id: number, newCashFlowDistribution: CreateCashFlowDistributionDto): CashFlowDistribution[] | NotFoundException;

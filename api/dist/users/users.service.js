@@ -79,21 +79,38 @@ let UsersService = class UsersService {
                         usage: "Investments",
                     },
                 ],
+                surplusCashFlowManagement: [
+                    {
+                        id: 1,
+                        title: "Saving",
+                        percentage: 16.67,
+                        bankAccount: 3,
+                    },
+                    {
+                        id: 2,
+                        title: "Investments",
+                        percentage: 83.33,
+                        bankAccount: 4,
+                    },
+                ],
                 unexpectedCashFlowManagement: [
                     {
                         id: 1,
                         title: "To make myself happy and to please others",
                         percentage: 33,
+                        bankAccount: 2,
                     },
                     {
                         id: 2,
                         title: "In savings",
                         percentage: 13,
+                        bankAccount: 3,
                     },
                     {
                         id: 3,
                         title: "In investments",
                         percentage: 50,
+                        bankAccount: 4,
                     },
                     {
                         id: 4,
@@ -492,6 +509,88 @@ let UsersService = class UsersService {
             }
         }
     }
+    getSurplusCashFlowManagement(id) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            return user.surplusCashFlowManagement;
+        }
+    }
+    getSurplusCashFlowManagementById(id, cashFlowDistributionId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const cashFlowDistribution = user.surplusCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            if (!cashFlowDistribution) {
+                return new common_1.NotFoundException('Cannot find any cash-flow distribution with id ' + id);
+            }
+            else {
+                return cashFlowDistribution;
+            }
+        }
+    }
+    createSurplusCashFlowManagement(id, newCashFlowDistribution) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            user.surplusCashFlowManagement = [...user.surplusCashFlowManagement, newCashFlowDistribution];
+            this.users = [...this.users.map(u => u.id !== id ? u : user)];
+            return user.surplusCashFlowManagement;
+        }
+    }
+    updateSurplusCashFlowManagement(id, cashFlowDistributionId, updatedCashFlowDistribution) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const cashFlowDistribution = user.surplusCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            if (!cashFlowDistribution) {
+                return new common_1.NotFoundException('Cannot find any cash-flow distribution with id ' + cashFlowDistributionId);
+            }
+            else {
+                if (updatedCashFlowDistribution.title) {
+                    cashFlowDistribution.title = updatedCashFlowDistribution.title;
+                }
+                if (updatedCashFlowDistribution.hasOwnProperty('percentage')) {
+                    cashFlowDistribution.percentage = updatedCashFlowDistribution.percentage;
+                }
+                if (updatedCashFlowDistribution.hasOwnProperty('bankAccount')) {
+                    cashFlowDistribution.bankAccount = updatedCashFlowDistribution.bankAccount;
+                }
+                user.surplusCashFlowManagement = [...user.surplusCashFlowManagement.map(cfd => cfd.id !== cashFlowDistributionId ? cfd : cashFlowDistribution)];
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return this.users.find(u => u.id === id).surplusCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            }
+        }
+    }
+    deleteSurplusCashFlowManagement(id, cashFlowDistributionId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const cashFlowDistribution = user.surplusCashFlowManagement.find(cfd => cfd.id === cashFlowDistributionId);
+            if (!cashFlowDistribution) {
+                return new common_1.NotFoundException('Cannot find any cash-flow distribution with id ' + id);
+            }
+            else {
+                const nbOfCashFlowDistributionsBeforeDelete = user.surplusCashFlowManagement.length;
+                user.surplusCashFlowManagement = user.surplusCashFlowManagement.filter(cfd => cfd.id !== cashFlowDistributionId);
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return {
+                    CashFlowDistributionsDeleted: nbOfCashFlowDistributionsBeforeDelete - user.surplusCashFlowManagement.length,
+                    nbCashFlowDistributionsAfterDelete: user.surplusCashFlowManagement.length,
+                };
+            }
+        }
+    }
     getUnexpectedCashFlowManagement(id) {
         const user = this.users.find(user => user.id === id);
         if (!user) {
@@ -543,6 +642,9 @@ let UsersService = class UsersService {
                 }
                 if (updatedCashFlowDistribution.hasOwnProperty('percentage')) {
                     cashFlowDistribution.percentage = updatedCashFlowDistribution.percentage;
+                }
+                if (updatedCashFlowDistribution.hasOwnProperty('bankAccount')) {
+                    cashFlowDistribution.bankAccount = updatedCashFlowDistribution.bankAccount;
                 }
                 user.unexpectedCashFlowManagement = [...user.unexpectedCashFlowManagement.map(cfd => cfd.id !== cashFlowDistributionId ? cfd : cashFlowDistribution)];
                 this.users = [...this.users.map(u => u.id !== id ? u : user)];

@@ -48,9 +48,14 @@ export declare class UsersController {
     createGoal(id: string, newGoal: CreateGoalDto): NotFoundException | Goal[];
     updateGoal(id: string, goalId: string, updatedGoal: UpdateGoalDto): NotFoundException | Goal;
     deleteGoal(id: string, goalId: string): DeleteGoalDto | NotFoundException;
+    getSurplusCashFlowManagement(id: string): CashFlowDistribution[] | NotFoundException;
+    getSurplusCashFlowManagementById(id: string, cashFlowDistributionId: string): CashFlowDistribution | NotFoundException;
+    createSurplusCashFlowManagement(id: string, newCashFlowDistribution: CreateCashFlowDistributionDto): NotFoundException | CashFlowDistribution[];
+    updateSurplusCashFlowManagement(id: string, cashFlowDistributionId: string, updatedCashFlowDistribution: UpdateCashFlowDistributionDto): NotFoundException | CashFlowDistribution;
+    deleteSurplusCashFlowManagement(id: string, cashFlowDistributionId: string): DeleteCashFlowDistributionDto | NotFoundException;
     getUnexpectedCashFlowManagement(id: string): CashFlowDistribution[] | NotFoundException;
     getUnexpectedCashFlowManagementById(id: string, cashFlowDistributionId: string): CashFlowDistribution | NotFoundException;
     createUnexpectedCashFlowManagement(id: string, newCashFlowDistribution: CreateCashFlowDistributionDto): NotFoundException | CashFlowDistribution[];
-    updateUnexpectedCashFlowManagement(id: string, cashFlowDistributionId: string, updatedCashFlowDistribution: UpdateCashFlowDistributionDto): CashFlowDistribution | NotFoundException;
+    updateUnexpectedCashFlowManagement(id: string, cashFlowDistributionId: string, updatedCashFlowDistribution: UpdateCashFlowDistributionDto): NotFoundException | CashFlowDistribution;
     deleteUnexpectedCashFlowManagement(id: string, cashFlowDistributionId: string): DeleteCashFlowDistributionDto | NotFoundException;
 }

@@ -104,6 +104,21 @@ let UsersController = class UsersController {
     deleteGoal(id, goalId) {
         return this.usersService.deleteGoal(+id, +goalId);
     }
+    getSurplusCashFlowManagement(id) {
+        return this.usersService.getSurplusCashFlowManagement(+id);
+    }
+    getSurplusCashFlowManagementById(id, cashFlowDistributionId) {
+        return this.usersService.getSurplusCashFlowManagementById(+id, +cashFlowDistributionId);
+    }
+    createSurplusCashFlowManagement(id, newCashFlowDistribution) {
+        return this.usersService.createSurplusCashFlowManagement(+id, newCashFlowDistribution);
+    }
+    updateSurplusCashFlowManagement(id, cashFlowDistributionId, updatedCashFlowDistribution) {
+        return this.usersService.updateSurplusCashFlowManagement(+id, +cashFlowDistributionId, updatedCashFlowDistribution);
+    }
+    deleteSurplusCashFlowManagement(id, cashFlowDistributionId) {
+        return this.usersService.deleteSurplusCashFlowManagement(+id, +cashFlowDistributionId);
+    }
     getUnexpectedCashFlowManagement(id) {
         return this.usersService.getUnexpectedCashFlowManagement(+id);
     }
@@ -294,6 +309,41 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "deleteGoal", null);
+__decorate([
+    common_1.Get(':id/surpluscashflowmanagement'),
+    __param(0, common_1.Param('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getSurplusCashFlowManagement", null);
+__decorate([
+    common_1.Get(':id/surpluscashflowmanagement/:cashFlowDistributionId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('cashFlowDistributionId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "getSurplusCashFlowManagementById", null);
+__decorate([
+    common_1.Post(':id/surpluscashflowmanagement'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_cash_flow_distribution_dto_1.CreateCashFlowDistributionDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "createSurplusCashFlowManagement", null);
+__decorate([
+    common_1.Patch(':id/surpluscashflowmanagement/:cashFlowDistributionId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('cashFlowDistributionId')), __param(2, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, update_cash_flow_distribution_dto_1.UpdateCashFlowDistributionDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateSurplusCashFlowManagement", null);
+__decorate([
+    common_1.Delete(':id/surpluscashflowmanagement/:cashFlowDistributionId'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Param('cashFlowDistributionId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], UsersController.prototype, "deleteSurplusCashFlowManagement", null);
 __decorate([
     common_1.Get(':id/unexpectedcashflowmanagement'),
     __param(0, common_1.Param('id')),
