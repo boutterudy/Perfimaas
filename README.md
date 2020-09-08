@@ -23,6 +23,7 @@
  - [X] Bank accounts list management (API)
  - [X] Goal management (API)
  - [X] Management of unexpected large cash-flow incomes (API)
+ - [X] Management of surplus cash-flow (API)
  - [ ] Perfimaas front-end
 
 ## Getting started
