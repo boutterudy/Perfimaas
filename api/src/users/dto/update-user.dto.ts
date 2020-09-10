@@ -8,6 +8,7 @@ export class UpdateUserDto {
   readonly fixedMonthlyExpenses: Array<Expense>;
   readonly variableMonthlyExpenses: Array<Expense>;
   readonly bankAccounts: Array<BankAccount>;
+  readonly surplusCashFlowManagement: Array<CashFlowDistribution>;
   readonly unexpectedCashFlowManagement: Array<CashFlowDistribution>;
   readonly safetySavingsGoal?: number;
   readonly goals: Array<Goal>;

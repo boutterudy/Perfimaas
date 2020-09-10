@@ -19,6 +19,10 @@ import { DeleteCashFlowDistributionDto } from './dto/delete-cash-flow-distributi
 import { UpdateCashFlowDistributionDto } from './dto/update-cash-flow-distribution.dto';
 import { CreateCashFlowDistributionDto } from './dto/create-cash-flow-distribution.dto';
 import { CashFlowDistribution } from './interfaces/cash-flow-distribution.interface';
+import { Usage } from './interfaces/usage.interface';
+import { CreateUsageDto } from './dto/create-usage.dto';
+import { UpdateUsageDto } from './dto/update-usage.dto';
+import { DeleteUsageDto } from './dto/delete-usage.dto';
 export declare class UsersService {
     users: User[];
     getAll(): User[];
@@ -46,6 +50,10 @@ export declare class UsersService {
     createGoal(id: number, newGoal: CreateGoalDto): Goal[] | NotFoundException;
     updateGoal(id: number, goalId: number, updatedGoal: UpdateGoalDto): Goal | NotFoundException;
     deleteGoal(id: number, goalId: number): DeleteGoalDto | NotFoundException;
+    getBankAccountUsages(id: number, bankAccountId: number): Usage[] | NotFoundException;
+    createBankAccountUsage(id: number, bankAccountId: number, newUsage: CreateUsageDto): Usage[] | NotFoundException;
+    updateBankAccountUsage(id: number, bankAccountId: number, usageType: number, updatedUsage: UpdateUsageDto): Usage | NotFoundException;
+    deleteBankAccountUsage(id: number, bankAccountId: number, usageType: number): DeleteUsageDto | NotFoundException;
     getSurplusCashFlowManagement(id: number): CashFlowDistribution[] | NotFoundException;
     getSurplusCashFlowManagementById(id: number, cashFlowDistributionId: number): CashFlowDistribution | NotFoundException;
     createSurplusCashFlowManagement(id: number, newCashFlowDistribution: CreateCashFlowDistributionDto): CashFlowDistribution[] | NotFoundException;

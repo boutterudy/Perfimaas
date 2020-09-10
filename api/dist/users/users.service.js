@@ -56,27 +56,51 @@ let UsersService = class UsersService {
                 bankAccounts: [
                     {
                         id: 1,
-                        bank: "CIC",
+                        bank: "CIC (current account)",
                         charges: 6.00,
-                        usage: "Fixed monthly expenses and monthly income",
+                        usages: [
+                            {
+                                type: 1,
+                                description: "Monthly income",
+                            },
+                            {
+                                type: 2,
+                                description: "Fixed monthly expenses",
+                            },
+                        ],
                     },
                     {
                         id: 2,
                         bank: "N26",
                         charges: 0.00,
-                        usage: "Daily (variable) expenses",
+                        usages: [
+                            {
+                                type: 3,
+                                description: "Daily (variable) expenses",
+                            },
+                        ],
                     },
                     {
                         id: 3,
-                        bank: "CIC",
-                        charges: 6.00,
-                        usage: "Saving",
+                        bank: "CIC (savings account)",
+                        charges: 0,
+                        usages: [
+                            {
+                                type: 4,
+                                description: "Saving",
+                            },
+                        ],
                     },
                     {
                         id: 4,
                         bank: "Coinbase",
                         charges: 0.00,
-                        usage: "Investments",
+                        usages: [
+                            {
+                                type: 5,
+                                description: "Investments",
+                            },
+                        ],
                     },
                 ],
                 surplusCashFlowManagement: [
@@ -124,6 +148,7 @@ let UsersService = class UsersService {
                         id: 1,
                         title: "Travel to Vietnam and Cambodia",
                         amount: 4076.00,
+                        priority: 1,
                     },
                 ],
             },
@@ -162,6 +187,9 @@ let UsersService = class UsersService {
             }
             if (updatedUser.bankAccounts) {
                 user.bankAccounts = updatedUser.bankAccounts;
+            }
+            if (updatedUser.surplusCashFlowManagement) {
+                user.surplusCashFlowManagement = updatedUser.surplusCashFlowManagement;
             }
             if (updatedUser.unexpectedCashFlowManagement) {
                 user.unexpectedCashFlowManagement = updatedUser.unexpectedCashFlowManagement;
@@ -400,8 +428,8 @@ let UsersService = class UsersService {
                 if (updatedBankAccount.hasOwnProperty('charges')) {
                     bankAccount.charges = updatedBankAccount.charges;
                 }
-                if (updatedBankAccount.usage) {
-                    bankAccount.usage = updatedBankAccount.usage;
+                if (updatedBankAccount.usages) {
+                    bankAccount.usages = updatedBankAccount.usages;
                 }
                 user.bankAccounts = [...user.bankAccounts.map(e => e.id !== bankAccountId ? e : bankAccount)];
                 this.users = [...this.users.map(u => u.id !== id ? u : user)];
@@ -482,6 +510,9 @@ let UsersService = class UsersService {
                 if (updatedGoal.hasOwnProperty('amount')) {
                     goal.amount = updatedGoal.amount;
                 }
+                if (updatedGoal.hasOwnProperty('priority')) {
+                    goal.priority = updatedGoal.priority;
+                }
                 user.goals = [...user.goals.map(g => g.id !== goalId ? g : goal)];
                 this.users = [...this.users.map(u => u.id !== id ? u : user)];
                 return this.users.find(u => u.id === id).goals.find(g => g.id === goalId);
@@ -506,6 +537,92 @@ let UsersService = class UsersService {
                     goalsDeleted: nbOfGoalsBeforeDelete - user.goals.length,
                     nbGoalsAfterDelete: user.goals.length,
                 };
+            }
+        }
+    }
+    getBankAccountUsages(id, bankAccountId) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+            if (!bankAccount) {
+                return new common_1.NotFoundException('Cannot find any bank account with id ' + bankAccountId);
+            }
+            else {
+                return bankAccount.usages;
+            }
+        }
+    }
+    createBankAccountUsage(id, bankAccountId, newUsage) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+            if (!bankAccount) {
+                return new common_1.NotFoundException('Cannot find any bank account with id ' + bankAccountId);
+            }
+            else {
+                bankAccount.usages = [...bankAccount.usages, newUsage];
+                this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                return bankAccount.usages;
+            }
+        }
+    }
+    updateBankAccountUsage(id, bankAccountId, usageType, updatedUsage) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+            if (!bankAccount) {
+                return new common_1.NotFoundException('Cannot find any bank account with id ' + bankAccountId);
+            }
+            else {
+                const usage = bankAccount.usages.find(u => u.type === usageType);
+                if (!usage) {
+                    return new common_1.NotFoundException('Cannot find any usage with type ' + bankAccountId);
+                }
+                else {
+                    if (updatedUsage.description) {
+                        usage.description = updatedUsage.description;
+                    }
+                    bankAccount.usages = [...bankAccount.usages.map(u => u.type !== usageType ? u : usage)];
+                    user.bankAccounts = [...user.bankAccounts.map(ba => ba.id !== bankAccountId ? ba : bankAccount)];
+                    this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                    return this.users.find(u => u.id === id).bankAccounts.find(ba => ba.id === bankAccountId).usages.find(u => u.type === usageType);
+                }
+            }
+        }
+    }
+    deleteBankAccountUsage(id, bankAccountId, usageType) {
+        const user = this.users.find(user => user.id === id);
+        if (!user) {
+            return new common_1.NotFoundException('Cannot find any user with id ' + id);
+        }
+        else {
+            const bankAccount = user.bankAccounts.find(ba => ba.id === bankAccountId);
+            if (!bankAccount) {
+                return new common_1.NotFoundException('Cannot find any bank account with id ' + bankAccountId);
+            }
+            else {
+                const usage = bankAccount.usages.find(u => u.type === usageType);
+                if (!usage) {
+                    return new common_1.NotFoundException('Cannot find any usage with type ' + bankAccountId);
+                }
+                else {
+                    const nbOfUsagesBeforeDelete = bankAccount.usages.length;
+                    bankAccount.usages = bankAccount.usages.filter(u => u.type !== usageType);
+                    this.users = [...this.users.map(u => u.id !== id ? u : user)];
+                    return {
+                        usagesDeleted: nbOfUsagesBeforeDelete - bankAccount.usages.length,
+                        nbUsagesAfterDelete: user.goals.length,
+                    };
+                }
             }
         }
     }
