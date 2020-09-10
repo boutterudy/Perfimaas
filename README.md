@@ -24,6 +24,7 @@
  - [X] Goal management (API)
  - [X] Management of unexpected large cash-flow incomes (API)
  - [X] Management of surplus cash-flow (API)
+ - [X] Management of recurring transfers (API)
  - [ ] Perfimaas front-end
 
 ## Getting started
