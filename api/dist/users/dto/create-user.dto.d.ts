@@ -4,6 +4,8 @@ import { CashFlowDistribution } from "../interfaces/cash-flow-distribution.inter
 import { Goal } from "../interfaces/goal.interface";
 export declare class CreateUserDto {
     readonly id: number;
+    readonly email: string;
+    readonly password: string;
     readonly netMonthlyIncome: number;
     readonly fixedMonthlyExpenses: Array<Expense>;
     readonly variableMonthlyExpenses: Array<Expense>;

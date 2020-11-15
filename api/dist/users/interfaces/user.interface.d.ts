@@ -4,6 +4,8 @@ import { CashFlowDistribution } from "./cash-flow-distribution.interface";
 import { Goal } from "./goal.interface";
 export interface User {
     id: number;
+    email: string;
+    password: string;
     netMonthlyIncome: number;
     fixedMonthlyExpenses: Array<Expense>;
     variableMonthlyExpenses: Array<Expense>;

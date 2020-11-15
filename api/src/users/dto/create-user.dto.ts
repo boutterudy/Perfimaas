@@ -5,6 +5,8 @@ import { Goal } from "../interfaces/goal.interface";
 
 export class CreateUserDto {
   readonly id: number;
+  readonly email: string;
+  readonly password: string;
   readonly netMonthlyIncome: number;
   readonly fixedMonthlyExpenses: Array<Expense>;
   readonly variableMonthlyExpenses: Array<Expense>;

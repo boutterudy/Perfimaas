@@ -8,28 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppController = void 0;
-const common_1 = require("@nestjs/common");
+exports.LocalStrategy = void 0;
+const passport_local_1 = require("passport-local");
 const passport_1 = require("@nestjs/passport");
-let AppController = class AppController {
-    async login(req) {
-        return req.user;
+const common_1 = require("@nestjs/common");
+const auth_service_1 = require("./auth.service");
+let LocalStrategy = class LocalStrategy extends passport_1.PassportStrategy(passport_local_1.Strategy) {
+    constructor(authService) {
+        super();
+        this.authService = authService;
+    }
+    async validate(email, password) {
+        const user = await this.authService.validateUser(email, password);
+        if (!user) {
+            throw new common_1.UnauthorizedException();
+        }
+        return user;
     }
 };
-__decorate([
-    common_1.UseGuards(passport_1.AuthGuard('local')),
-    common_1.Post('auth/login'),
-    __param(0, common_1.Request()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], AppController.prototype, "login", null);
-AppController = __decorate([
-    common_1.Controller()
-], AppController);
-exports.AppController = AppController;
-//# sourceMappingURL=app.controller.js.map
+LocalStrategy = __decorate([
+    common_1.Injectable(),
+    __metadata("design:paramtypes", [auth_service_1.AuthService])
+], LocalStrategy);
+exports.LocalStrategy = LocalStrategy;
+//# sourceMappingURL=local.strategy.js.map

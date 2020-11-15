@@ -3,6 +3,8 @@ import { BankAccount } from "../interfaces/bank-account.interface";
 import { CashFlowDistribution } from "../interfaces/cash-flow-distribution.interface";
 import { Goal } from "../interfaces/goal.interface";
 export declare class UpdateUserDto {
+    readonly email: string;
+    readonly password: string;
     readonly netMonthlyIncome: number;
     readonly fixedMonthlyExpenses: Array<Expense>;
     readonly variableMonthlyExpenses: Array<Expense>;

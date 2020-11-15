@@ -20,6 +20,7 @@ import { CashFlowDistribution } from './interfaces/cash-flow-distribution.interf
 import { CreateCashFlowDistributionDto } from './dto/create-cash-flow-distribution.dto';
 import { UpdateCashFlowDistributionDto } from './dto/update-cash-flow-distribution.dto';
 import { DeleteCashFlowDistributionDto } from './dto/delete-cash-flow-distribution.dto';
+import { UpdatePasswordDto } from './dto/update-password.dto';
 
 @Controller('users')
 export class UsersController {
@@ -50,6 +51,12 @@ export class UsersController {
   @Delete(':id')
   deleteUser(@Param('id') id: string): DeleteUserDto | NotFoundException {
     return this.usersService.deleteUser(+id);
+  }
+
+  // Users password
+  @Patch(':id/password')
+  updatePassword(@Param('id') id: string, @Body() updatedPassword: UpdatePasswordDto) {
+    return this.usersService.updatePassword(+id, updatedPassword);
   }
 
   // Users fixed monthly expenses

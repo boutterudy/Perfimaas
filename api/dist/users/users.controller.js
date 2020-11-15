@@ -25,6 +25,7 @@ const create_goal_dto_1 = require("./dto/create-goal.dto");
 const update_goal_dto_1 = require("./dto/update-goal.dto");
 const create_cash_flow_distribution_dto_1 = require("./dto/create-cash-flow-distribution.dto");
 const update_cash_flow_distribution_dto_1 = require("./dto/update-cash-flow-distribution.dto");
+const update_password_dto_1 = require("./dto/update-password.dto");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -43,6 +44,9 @@ let UsersController = class UsersController {
     }
     deleteUser(id) {
         return this.usersService.deleteUser(+id);
+    }
+    updatePassword(id, updatedPassword) {
+        return this.usersService.updatePassword(+id, updatedPassword);
     }
     getFixedMonthlyExpenses(id) {
         return this.usersService.getFixedMonthlyExpenses(+id);
@@ -169,6 +173,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Object)
 ], UsersController.prototype, "deleteUser", null);
+__decorate([
+    common_1.Patch(':id/password'),
+    __param(0, common_1.Param('id')), __param(1, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_password_dto_1.UpdatePasswordDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updatePassword", null);
 __decorate([
     common_1.Get(':id/fixedmonthlyexpenses'),
     __param(0, common_1.Param('id')),

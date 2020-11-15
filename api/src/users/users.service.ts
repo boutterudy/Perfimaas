@@ -23,152 +23,160 @@ import { Usage } from './interfaces/usage.interface';
 import { CreateUsageDto } from './dto/create-usage.dto';
 import { UpdateUsageDto } from './dto/update-usage.dto';
 import { DeleteUsageDto } from './dto/delete-usage.dto';
+import { UpdatePasswordDto } from './dto/update-password.dto';
+import { UpdateEmailDto } from './dto/update-email.dto';
 
 @Injectable()
 export class UsersService {
-  users: User[] = [
-    {
-      id: 1,
-      netMonthlyIncome: 1200.85,
-      fixedMonthlyExpenses: [
-        {
-          id: 1,
-          title: "OVH - VPS",
-          amount: 15.59,
-        },
-        {
-          id: 2,
-          title: "OVH - rudyboutte.com",
-          amount: 1.00,
-        },
-        {
-          id: 3,
-          title: "OVH - bonalim.com",
-          amount: 1.00,
-        },
-        {
-          id: 4,
-          title: "OVH - rudy.cloud",
-          amount: 1.80,
-        },
-      ],
-      variableMonthlyExpenses: [
-        {
-          id: 1,
-          title: "Fuel",
-          amount: 90.00,
-        },
-        {
-          id: 2,
-          title: "Shopping",
-          amount: 0.00,
-        },
-        {
-          id: 3,
-          title: "Pleasures",
-          amount: 100.00,
-        },
-      ],
-      bankAccounts: [
-        {
-          id: 1,
-          bank: "CIC (current account)",
-          charges: 6.00,
-          usages: [
-            {
-              type: 1,
-              description: "Monthly income",
-            },
-            {
-              type: 2,
-              description: "Fixed monthly expenses",
-            },
-          ],
-        },
-        {
-          id: 2,
-          bank: "N26",
-          charges: 0.00,
-          usages: [
-            {
-              type: 3,
-              description: "Daily (variable) expenses",
-            },
-          ],
-        },
-        {
-          id: 3,
-          bank: "CIC (savings account)",
-          charges: 0,
-          usages: [
-            {
-              type: 4,
-              description: "Saving",
-            },
-          ],
-        },
-        {
-          id: 4,
-          bank: "Coinbase",
-          charges: 0.00,
-          usages: [
-            {
-              type: 5,
-              description: "Investments",
-            },
-          ],
-        },
-      ],
-      surplusCashFlowManagement: [
-        {
-          id: 1,
-          title: "Saving",
-          percentage:16.67,
-          bankAccount: 3,
-        },
-        {
-          id: 2,
-          title: "Investments",
-          percentage:83.33,
-          bankAccount: 4,
-        },
-      ],
-      unexpectedCashFlowManagement: [
-        {
-          id: 1,
-          title: "To make myself happy and to please others",
-          percentage: 33,
-          bankAccount: 2,
-        },
-        {
-          id: 2,
-          title: "In savings",
-          percentage: 13,
-          bankAccount: 3,
-        },
-        {
-          id: 3,
-          title: "In investments",
-          percentage: 50,
-          bankAccount: 4,
-        },
-        {
-          id: 4,
-          title: "Donation to charity",
-          percentage: 4,
-        },
-      ],
-      safetySavingsGoal: 4,
-      goals: [
-        {
-          id: 1,
-          title: "Travel to Vietnam and Cambodia",
-          amount: 4076.00,
-          priority: 1,
-        },
-      ],
-    },
-  ];
+  private users: User[];
+  constructor() {
+    this.users = [
+      {
+        id: 1,
+        email: "btte.rudy@gmail.com",
+        password: "myAwesomePassword",
+        netMonthlyIncome: 1200.85,
+        fixedMonthlyExpenses: [
+          {
+            id: 1,
+            title: "OVH - VPS",
+            amount: 15.59,
+          },
+          {
+            id: 2,
+            title: "OVH - rudyboutte.com",
+            amount: 1.00,
+          },
+          {
+            id: 3,
+            title: "OVH - bonalim.com",
+            amount: 1.00,
+          },
+          {
+            id: 4,
+            title: "OVH - rudy.cloud",
+            amount: 1.80,
+          },
+        ],
+        variableMonthlyExpenses: [
+          {
+            id: 1,
+            title: "Fuel",
+            amount: 90.00,
+          },
+          {
+            id: 2,
+            title: "Shopping",
+            amount: 0.00,
+          },
+          {
+            id: 3,
+            title: "Pleasures",
+            amount: 100.00,
+          },
+        ],
+        bankAccounts: [
+          {
+            id: 1,
+            bank: "CIC (current account)",
+            charges: 6.00,
+            usages: [
+              {
+                type: 1,
+                description: "Monthly income",
+              },
+              {
+                type: 2,
+                description: "Fixed monthly expenses",
+              },
+            ],
+          },
+          {
+            id: 2,
+            bank: "N26",
+            charges: 0.00,
+            usages: [
+              {
+                type: 3,
+                description: "Daily (variable) expenses",
+              },
+            ],
+          },
+          {
+            id: 3,
+            bank: "CIC (savings account)",
+            charges: 0,
+            usages: [
+              {
+                type: 4,
+                description: "Saving",
+              },
+            ],
+          },
+          {
+            id: 4,
+            bank: "Coinbase",
+            charges: 0.00,
+            usages: [
+              {
+                type: 5,
+                description: "Investments",
+              },
+            ],
+          },
+        ],
+        surplusCashFlowManagement: [
+          {
+            id: 1,
+            title: "Saving",
+            percentage:16.67,
+            bankAccount: 3,
+          },
+          {
+            id: 2,
+            title: "Investments",
+            percentage:83.33,
+            bankAccount: 4,
+          },
+        ],
+        unexpectedCashFlowManagement: [
+          {
+            id: 1,
+            title: "To make myself happy and to please others",
+            percentage: 33,
+            bankAccount: 2,
+          },
+          {
+            id: 2,
+            title: "In savings",
+            percentage: 13,
+            bankAccount: 3,
+          },
+          {
+            id: 3,
+            title: "In investments",
+            percentage: 50,
+            bankAccount: 4,
+          },
+          {
+            id: 4,
+            title: "Donation to charity",
+            percentage: 4,
+          },
+        ],
+        safetySavingsGoal: 4,
+        goals: [
+          {
+            id: 1,
+            title: "Travel to Vietnam and Cambodia",
+            amount: 4076.00,
+            priority: 1,
+          },
+        ],
+      },
+    ];
+  }
+
 
   // Users
   getAll(): User[] {
@@ -194,6 +202,14 @@ export class UsersService {
     if(!user) {
       return new NotFoundException('Cannot find any user with id ' + id);
     } else {
+      if(updatedUser.email) {
+        user.email = updatedUser.email;
+      }
+
+      if(updatedUser.password) {
+        user.password = updatedUser.password;
+      }
+
       if(updatedUser.netMonthlyIncome) {
         user.netMonthlyIncome = updatedUser.netMonthlyIncome;
       }
@@ -241,6 +257,34 @@ export class UsersService {
       return {
         usersDeleted: nbOfUsersBeforeDelete - this.users.length,
         nbUsersAfterDelete: this.users.length,
+      }
+    }
+  }
+
+  // User email
+  async getByEmail(email: string): Promise<User | undefined> {
+    return this.users.find(user => user.email === email);
+  }
+
+  updateEmail(id: number, updatedEmail: UpdateEmailDto): User | NotFoundException {
+    const user = this.users.find(u => u.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      if(updatedEmail) {
+        user.email = updatedEmail.email;
+      }
+    }
+  }
+
+  // User password
+  updatePassword(id: number, updatedPassword: UpdatePasswordDto): User | NotFoundException {
+    const user = this.users.find(u => u.id === id);
+    if(!user) {
+      return new NotFoundException('Cannot find any user with id ' + id);
+    } else {
+      if(updatedPassword) {
+        user.password = updatedPassword.password;
       }
     }
   }
